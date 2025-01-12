@@ -3,6 +3,8 @@
 
 Kalpa is a powerful and versatile software suite designed to cater to the needs of professionals in geology, GIS, and related fields. Leveraging advanced visualization and processing capabilities, Kalpa bridges the gap between geospatial data and actionable insights.
 
+![Alt Text](Images/KALPA_Main.png)
+
 ---
 
 ## Key Advantage
