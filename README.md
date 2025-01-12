@@ -17,7 +17,7 @@ One of Kalpa's biggest advantages is that it is written in Python. This enables 
 
 ### **Kalpa Window**
 
-![Vector](Images/KalpaWindow.png)
+![Vector](Images/KalpaWindow.jpeg)
 ### **Project Management**
 - **Project Creation**: Easily create and manage projects in a specific folder location to keep your work organized.
 
@@ -32,13 +32,13 @@ One of Kalpa's biggest advantages is that it is written in Python. This enables 
   - Geophysical Models: Topography, crustal and lithospheric thickness, seismic tomography, Geodynamics models, etc.
 - **Export Options**: Generate publication-ready figures in formats such as `.svg`, `.eps`, `.ps`, `.pdf`, `.tex`, `.png`, `.jpeg`, and `.jpg`.
 
-![Raster](Images/Raster.png)
+![Raster](Images/Raster.jpeg)
 
 #### **Vector Data Visualization**
 - **Supported Formats**: Load and visualize vector data in shapefile and GPKG formats, including points, lines, and polygons.
 - **Applications**: Geological maps, geochemical data, structural data, lithological maps, and more.
 
-![Vector](Images/Vector.png)
+![Vector](Images/Vector.jpeg)
 
 #### **Customization Options**
 - **Raster Layers**:
