@@ -104,12 +104,11 @@ Kalpa integrates cutting-edge machine learning models to support supervised and 
 
 ---
 
-## Why Choose Kalpa?
-Kalpa is not just a tool; it is your gateway to unlocking the full potential of geospatial data. Whether you are an ArcGIS or QGIS user or exploring geospatial data for the first time, Kalpa equips you with the features and flexibility to achieve your goals effortlessly.
+## Documentation
+
+You can find the latest documentation here:[KALPA Documentation](https://unisyd-my.sharepoint.com/:f:/g/personal/satyampratap_singh_sydney_edu_au/EjNk95Cszg5LrP2mqkXbdEUBoCKb2Jyye7syOfrmQzEgBg?e=4AGGFa)
 
 ---
-
-
 ## Contributing
 We welcome contributions from the community! Please read our [Contributing Guide](CONTRIBUTING.md) for more details.
 
