@@ -3,7 +3,7 @@
 
 Kalpa is a powerful and versatile software suite designed to cater to the needs of professionals in geology, GIS, and related fields. Leveraging advanced visualization and processing capabilities, Kalpa bridges the gap between geospatial data and actionable insights.
 
-![Alt Text](Images/KALPA_Main.png)
+![Alt Text](assets/KALPA_Main.png)
 
 ---
 
@@ -17,7 +17,7 @@ One of Kalpa's biggest advantages is that it is written in Python. This enables 
 
 ### **Kalpa Window**
 
-![Vector](Images/KalpaWindow.jpeg)
+![Vector](assets/KalpaWindow.jpeg)
 ### **Project Management**
 - **Project Creation**: Easily create and manage projects in a specific folder location to keep your work organized.
 
@@ -32,13 +32,13 @@ One of Kalpa's biggest advantages is that it is written in Python. This enables 
   - Geophysical Models: Topography, crustal and lithospheric thickness, seismic tomography, Geodynamics models, etc.
 - **Export Options**: Generate publication-ready figures in formats such as `.svg`, `.eps`, `.ps`, `.pdf`, `.tex`, `.png`, `.jpeg`, and `.jpg`.
 
-![Raster](Images/Raster.jpeg)
+![Raster](assets/Raster.jpeg)
 
 #### **Vector Data Visualization**
 - **Supported Formats**: Load and visualize vector data in shapefile and GPKG formats, including points, lines, and polygons.
 - **Applications**: Geological maps, geochemical data, structural data, lithological maps, and more.
 
-![Vector](Images/Vector.jpeg)
+![Vector](assets/Vector.jpeg)
 
 #### **Customization Options**
 - **Raster Layers**:
