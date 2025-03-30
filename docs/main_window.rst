@@ -2,6 +2,9 @@ The Main Window
 ===============
 
 Once you’ve set up the projection and project folder, you’ll enter the Main Window, the central workspace in Kalpa.
+    .. image:: /_static/images/main_window.png
+        :alt: Welcome Window
+        :align: center
 
 Here’s a quick overview of its components:
 

@@ -1,37 +1,45 @@
-.. Kalpa documentation master file, created by
-   sphinx-quickstart on Mon Feb  3 17:37:23 2025.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
 Getting started with Kalpa
-============================
+==========================
 
-Welcome to Kalpa, a versatile software suite for geospatial data visualization, processing, and machine learning. This guide will walk you through the initial setup and introduce you to the main features of the interface. 
+Welcome to Kalpa, a versatile software suite for geospatial data visualization, processing, and machine learning. This guide will walk you through the initial setup and introduce you to the main features of the interface.
 
-----------------------------------------------------------------
+What can Kalpa Do?
+------------------
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    :caption: What can Kalpa Do?
 
-   summary.rst
-   what_can_kalpa_do.rst
+   summary
+   what_can_kalpa_do
+
+Hands on!
+---------
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 10
    :caption: Hands on!
 
-   install.rst
-   projection.rst
-   project_folder.rst
-   main_window.rst
+   install
+   projection
+   project_folder
+   main_window
+   loading_and_visualising_data
+   grid_settings
+   creating_data_geod_engg_ai
+   filtering_data
+   vector_calculator
+   advanced_kalpa_minex_plus
 
-Add your content using ``reStructuredText`` syntax. See the
-`reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
-documentation for details.
-
+How to apply machine learning in Kalpa?
+---------------------------------------
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :maxdepth: 5
+   :caption: Tutorials
 
+   tutorial1
+   tutorial2
+   tutorial3
+   tutorial4
+   tutorial5

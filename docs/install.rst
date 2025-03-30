@@ -1,3 +1,4 @@
+============
 Installation
 ============
 
@@ -28,8 +29,7 @@ Window Installation Instructions
 3: **Launch**: Launch the Application.
 
 Some datasets you can use for running Kalpa can be found here: 
-https://unisyd-my.sharepoint.com/:f:/g/personal/satyampratap_singh_sydney_edu_au/EjNk95Cszg5LrP2mqkXbdEUBoCKb2Jyye7syOfrmQzEgBg?e=4AGGFa
-        
+Link placeholder        
 
 Starting Window
 ----------------
