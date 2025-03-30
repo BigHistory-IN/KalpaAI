@@ -43,3 +43,4 @@ How to apply machine learning in Kalpa?
    tutorial3
    tutorial4
    tutorial5
+   tutorial6
