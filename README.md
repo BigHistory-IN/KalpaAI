@@ -106,7 +106,7 @@ Kalpa integrates cutting-edge machine learning models to support supervised and 
 
 ## Documentation
 
-You can find the latest documentation here:[KALPA Documentation](https://unisyd-my.sharepoint.com/:w:/g/personal/satyampratap_singh_sydney_edu_au/Eeyp-2WIuttHjvlxXHYawkAB9RmTfyuzACFRTCtE2eI6PA?e=dkCt7i)
+You can find the latest documentation here:[KALPA Documentation](https://kalpa.bighistory.in/docs/index.html)
 
 ---
 ## Contributing
