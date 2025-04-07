@@ -1,5 +1,14 @@
 Tutorial 1: Classifying Lithology Types in the Ladakh Region Using Kalpa
 =======================================================================
+Tutorial by
+
+**Utpal Singh¹**, **Satyam Pratap Singh¹** , **Sudipta Sarkar²**
+
+¹ School of Geosciences, University of Sydney 
+
+² Department of Earth and Climate Sciences, Indian Institute of Science Education and Research Pune 
+
+-------------------------------------------------
 
 This tutorial demonstrates how to **classify lithology types** in the **Ladakh region** using **Kalpa**.  
 We will employ a **supervised machine learning** method, **Random Forest**, to train a model using **satellite data** and known lithology types.  

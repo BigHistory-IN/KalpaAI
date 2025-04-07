@@ -1,5 +1,12 @@
 Tutorial 3: Creating Mineral Index Maps using Kalpa
 ====================================================
+Tutorial by
+
+**Utpal Singh¹**, **Satyam Pratap Singh¹**  
+
+¹ School of Geosciences, University of Sydney
+
+------------------------------------------------
 
 This tutorial demonstrates how to create mineral index maps using Kalpa. We will calculate specific mineral indices such as the Green Normalized Difference Vegetation Index (GNDVI) and the Ferrous Silicate Index using satellite data.
 

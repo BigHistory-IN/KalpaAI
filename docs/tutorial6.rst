@@ -1,5 +1,12 @@
 Tutorial 6: Mapping Floodplain Wetlands of Kosi River in Bihar
 ==============================================================
+Tutorial by
+
+**Utpal Singh¹**, **Satyam Pratap Singh¹**  
+
+¹ School of Geosciences, University of Sydney
+
+------------------------------------------------
 
 This tutorial demonstrates how to map floodplain wetlands of the Kosi River in Bihar using Kalpa. The process involves importing raster datasets, defining a region of interest, sampling the dataset, and applying a classification formula.
 

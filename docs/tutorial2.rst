@@ -13,149 +13,346 @@ The goal is to create **prospectivity maps for copper deposits** based on the kn
 We will sample various datasets at the locations of **known copper occurrences**, create an **unlabeled dataset** for contrast, and use **Random Forest (RF)** classifier and regressor to label and map prospectivity.
 
 Dataset Overview
+================
+
+The dataset can be downloaded here.
+
+Geophysical Data
 ----------------
 
-**Dataset can be downloaded here** *[insert dataset link]*  
+**Gravity Data:**
 
-Geophysical Data:
-~~~~~~~~~~~~~~~~~
+- Observed Gravity
+- Theoretical Gravity
+- Bouguer Anomaly
+- Upward Continued Bouguer Anomaly
+- Directional Derivatives of Bouguer Anomaly
 
-- **Gravity Data**:
-  - Observed Gravity
-  - Theoretical Gravity
-  - Bouguer Anomaly
-  - Upward Continued Bouguer Anomaly
-  - Directional Derivatives of Bouguer Anomaly
+**Magnetic Data:**
 
-- **Magnetic Data**:
-  - Observed Magnetism
-  - IGRF
-  - Magnetic Anomaly
-  - Upward Continued Magnetic Anomaly
-  - Directional Derivatives of Magnetic Anomaly
+- Observed Magnetism
+- IGRF
+- Magnetic Anomaly
+- Upward Continued Magnetic Anomaly
+- Directional Derivatives of Magnetic Anomaly
 
-Geological Data:
-~~~~~~~~~~~~~~~~
+Geological Data
+---------------
 
-- Tectonic Age  
-- Folds  
-- Faults  
-- Lineaments  
+- Tectonic Age
+- Folds
+- Faults
+- Lineaments
 
-Satellite Data:
-~~~~~~~~~~~~~~~
+Satellite Data
+--------------
 
-- **LANDSAT8 Bands**:
-  - Multispectral bands (3 to 8) as NetCDF files  
-- **SRTM Elevation Data**:
-  - Elevation from Shuttle Radar Topography Mission (SRTM)  
-- **ASTER Data**:
-  - Multispectral bands (1 to 14) as NetCDF files  
+**LANDSAT8 Bands:**
 
-Mineral Occurrences:
-~~~~~~~~~~~~~~~~~~~~
+- Multispectral bands (3 to 8) as NetCDF files
 
-The dataset includes **96 known mineral deposits**, focusing on **copper deposits** for this tutorial.
+**SRTM Elevation Data:**
+
+- Elevation values from the Shuttle Radar Topography Mission (SRTM)
+
+**ASTER Data:**
+
+- Multispectral bands (1 to 14) as NetCDF files
+
+**Mineral Occurrences:**
+
+- The dataset includes 96 known occurrences of mineral deposits.  
+  For this tutorial, we focus on copper deposits.
 
 Workflow
---------
+========
 
 Step 1: Loading Data and Visualization
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------
 
-1. Start Kalpa and choose **Cartesian coordinates** as the working system.  
-2. Create a folder named **"MineralProspectivity"** to organize data and outputs.  
-3. Import raster data:  
-   - Go to **File → Import → Raster** and load:
-     - SatelliteData/SRTM/SRTM_Raj_India.nc
-     - SatelliteData/ASTER/Band_1_ASTER.nc to Band_14_ASTER.nc
-     - SatelliteData/LANDSAT/Band_3_LANDSAT.nc to Band_8_LANDSAT.nc  
-   - Adjust **colormap (cmap)** and ranges as needed.  
-4. Import vector data:  
-   - Go to **File → Import → Vector** and load:
-     - ShapeFiles/Fault_Tectonic.shp
-     - ShapeFiles/Fold_Tectonic.shp
-     - ShapeFiles/Lineament_Tectonic.shp
-     - ShapeFiles/Tectonic_Framework.shp
-     - GeophysicalData/Gravity.shp
-     - GeophysicalData/Magnetic.shp
-     - Deposits/Deposits.shp  
-5. Customize visualization:
-   - Adjust **color and width** of faults, folds, and lineaments.
-   - Apply **AGE** column and colormap to Tectonic_Framework.
-   - Set **BOUGUER_AN** and **MAGNETIC_A** with diverging colormaps and ranges.
-   - Increase **Deposit points** size for clarity.
+1. Start Kalpa and choose Cartesian coordinates as the working coordinate system.
+2. Create a new folder named ``MineralProspectivity`` to save the dataset, figures, etc.
 
-Step 2: Processing and Filtering Data
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Import Vector Data:**
 
-1. **Filter out NaN values**:  
-   - Go to **Data Processing → Vector → Filtering**.  
-   - For Gravity: `pd.notna(row['BOUGUER_AN'])` → save as **gravity_filtered.gpkg**.  
-   - For Magnetic: `pd.notna(row['MAGNETIC_A'])`.  
-2. **Filter copper deposits**:  
-   - Condition: `'Cu' in row['MINERAL_OR']`.
+- Navigate to: ``File -> Import -> Vector``  
+- Load the following files:
+  
+  - ``ShapeFiles/Fault_Tectonic.shp``
+  - ``ShapeFiles/Fold_Tectonic.shp``
+  - ``ShapeFiles/Lineament_Tectonic.shp``
+  - ``ShapeFiles/Tectonic_Framework.shp``
+  - ``Deposits/Deposits.shp``
 
-Step 3: Extract Data at Known Occurrences
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- Adjust colormap, feature width, and range as needed.
 
-1. **Sample data**:
-   - Go to **Data Processing → Data Sampling**.  
-   - Use **Deposits.shp** as AOI.  
-   - Sample layers/columns:
-     - Gravity: Observed_G, Theoretical_G, BOUGUER_AN  
-     - Magnetic: Observed_M, IGRF, MAGNETIC_A  
-     - Folds, Faults, Lineaments: generate distance columns (column_name_cdist).  
-   - Add a **LABEL column = 1** using Vector Calculator.  
-   - Save as **Sampled_Deposit_with_Label**.
 
-Step 4: Create Unlabeled Data
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    .. image:: /_static/images/tut2_01.png
+        :alt: Welcome Window
+        :align: center
 
-1. **Generate bounding box and random points**:  
-   - Use **Bounding Box utility** to define study area.  
-   - Generate random points within the box and sample data as in Step 3.  
-2. **Filter points by distance**:
-   - Filter condition: `row['BOUGUER_AN_cdist'] < 0.01`.  
-   - Assign **LABEL = 0**.  
-   - Save as **Sampled_Unlabelled_Points**.
+**Import Raster Data:**
 
-Step 5: Build Random Forest Classifier
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- Navigate to: ``File -> Import -> Raster``  
+- Load the following files:
 
-1. **Prepare training data**:  
-   - Merge **Sampled_Deposit_with_Label** and **Sampled_Unlabelled_Points** → **PU_Data**.  
-2. **Train RF classifier**:  
-   - Go to **Models → Random Forest Classifier → Create New Model**.  
-   - Input dataset: **PU_Data.gpkg**, target: **LABEL**.  
-   - Select all features, set RF parameters.  
-   - Train and save model.
+  - ``GeophysicalProcessed/Raster/BOUGUER_AN_Kriging.nc``
+  - ``GeophysicalProcessed/Raster/MAGNETIC_A_Kriging.nc``
+  - ``GeophysicalProcessed/Raster/Grad_Gravity/*``
+  - ``GeophysicalProcessed/Raster/Grad_Magnetic/*``
+  - ``GeophysicalProcessed/Raster/UC_Gravity/*``
+  - ``GeophysicalProcessed/Raster/UC_Magnetic/*``
+  - ``SatelliteData/SRTM/SRTM_Raj_India.nc``
+  - ``SatelliteData/LANDSAT/Band_3_LANDSAT.nc`` to ``Band_8_LANDSAT.nc``
 
-Step 6: Filter Negative Samples
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-1. **Predict labels**:  
-   - Apply trained RF model to **PU_Data.gpkg** → save as **PU_Prediction.gpkg**.  
-2. **Filter negatives**:
-   - Condition: `row['Predicted_LABEL'] < 0.05`.  
-   - Assign **LABEL_Pros = -1**, save as **Negative_Sample_with_Label**.
+    .. image:: /_static/images/tut2_02.png
+        :alt: Welcome Window
+        :align: center
 
-Step 7: Build Prospectivity Model
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-1. **Merge training data**:
-   - Combine positive and negative samples → **Prospectivity_Training_Data**.  
-2. **Train RF regressor**:  
-   - Input: **Prospectivity_Training_Data**, target: **LABEL_Pros**.  
-   - Train model and save as **Prospector**.
 
-Step 8: Generate Prospectivity Map
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Step 2: Feature Generation
+--------------------------
 
-1. **Prepare data**:
-   - Create grid, sample data (as in Step 3) → save as **AOI_whole_region**.  
-2. **Predict prospectivity**:
-   - Apply **Prospector model** to **AOI_whole_region.gpkg**.  
-   - Save as **Prospectivity_Maps**.  
-3. **Visualize**:
-   - Display column **Predicted_LABEL_Pros** to show prospectivity map.
+1. **Generate Positive Labels from Known Deposits:**
+
+   - Go to: ``Plugins -> MPM -> Feature Generation``
+   - AOI/ROI: ``Deposits``
+   - Select all layers *except* Tectonic Framework and Deposits
+
+   **Layer Config:**
+
+   - **Euclidean Distance** for vectors:
+     - Fault_Tectonic
+     - Fold_Tectonic
+     - Lineament_Tectonic
+
+   - **Band Value** for rasters:
+     - BOUGUER_AN_Kriging.nc
+     - MAGNETIC_A_Kriging.nc
+     - Grad_Gravity/*
+     - Grad_Magnetic/*
+     - UC_Gravity/*
+     - UC_Magnetic/*
+
+   - Sampling method: ``regular`` with 100 seed points
+
+
+    .. image:: /_static/images/tut2_03.png
+        :alt: Welcome Window
+        :align: center
+
+
+    .. image:: /_static/images/tut2_04.png
+        :alt: Welcome Window
+        :align: center
+
+
+
+   - Click **Generate** → Save as: ``deposit_sampled.gpkg``
+
+
+    .. image:: /_static/images/tut2_05.png
+        :alt: Welcome Window
+        :align: center
+
+
+
+2. **Generate Label Column:**
+
+   - Go to: ``Tools -> Vector Calculator``
+   - Layer: ``deposit_sampled``
+   - Condition: ``== 1``
+   - New column: ``Label``
+       .. image:: /_static/images/tut2_05.png
+        :alt: Welcome Window
+        :align: center
+   - Click **Apply** → Save as: ``deposit_positive_label.gpkg``
+
+
+    .. image:: /_static/images/tut2_07.png
+        :alt: Welcome Window
+        :align: center
+
+
+
+3. **Create Bounding Box:**
+
+   - From ``Create Bounding Box``, choose layer: ``BOUGUER_AN_Kriging``
+
+    .. image:: /_static/images/tut2_08.png
+        :alt: Welcome Window
+        :align: center
+
+
+   - Click **Create** → Save as: ``bounding_box.gpkg``
+
+    .. image:: /_static/images/tut2_09.png
+        :alt: Welcome Window
+        :align: center
+
+
+
+4. **Generate Unlabelled (Random) Features:**
+
+   - AOI: ``bounding_box``
+   - Method: ``Random``, 1000 seed points
+
+   **Layer Config:**
+
+   - **Euclidean Distance** for:
+     - Fault_Tectonic
+     - Fold_Tectonic
+     - Lineament_Tectonic
+
+   - **Band Value** for:
+     - BOUGUER_AN_Kriging.nc
+     - MAGNETIC_A_Kriging.nc
+     - Grad_Gravity/*
+     - Grad_Magnetic/*
+     - UC_Gravity/*
+     - UC_Magnetic/*
+
+    .. image:: /_static/images/tut2_10.png
+        :alt: Welcome Window
+        :align: center
+    .. image:: /_static/images/tut2_11.png
+        :alt: Welcome Window
+        :align: center
+    .. image:: /_static/images/tut2_12.png
+        :alt: Welcome Window
+        :align: center
+
+   - Click **Generate** → Save as: ``randomly_sampled.gpkg``
+
+    .. image:: /_static/images/tut2_13.png
+        :alt: Welcome Window
+        :align: center
+This workflow now generates randomly sampled data which in this workflow, the width is set to 1 for visualisation and positive samples as thicker dots with width 3
+
+    .. image:: /_static/images/tut2_14.png
+        :alt: Welcome Window
+        :align: center
+
+5. **Label Random Features as 0:**
+
+   - Go to: ``Vector Calculator``
+   - Layer: ``randomly_sampled``
+   - Condition: ``== 0``
+   - Column name: ``Label``
+   - Save as: ``deposits_unlabelled.gpkg``
+
+    .. image:: /_static/images/tut2_15.png
+        :alt: Welcome Window
+        :align: center
+
+6. **Merge Positive and Unlabelled Datasets:**
+
+   - Remove ``deposit_sampled`` and ``randomly_sampled`` layers (optional)
+   - Go to: ``Merge Layers``
+      .. image:: /_static/images/tut2_16.png
+         :alt: Welcome Window
+         :align: center
+
+   - Merge: ``deposits_positive_label`` + ``deposits_unlabelled``
+   - Save as: ``training_data.gpkg``
+   - Visualization tip: Set positive samples (label = 1) with width 3, others with width 1
+
+Now you can see that the positive (1) are in green color and unlabelled in brown. You may edit this in cmap
+
+    .. image:: /_static/images/tut2_17.png
+        :alt: Welcome Window
+        :align: center
+
+
+Step 3: Create PU Bagging Model
+-------------------------------
+
+1. Go to: ``Plugins -> MPM -> Models -> PU Bagging -> Create New Model``
+
+      .. image:: /_static/images/tut2_18.png
+         :alt: Welcome Window
+         :align: center
+
+2. Training data: ``training_data.gpkg``
+      .. image:: /_static/images/tut2_19.png
+         :alt: Welcome Window
+         :align: center
+3. (Optional) Generate correlation report to examine feature correlation
+      .. image:: /_static/images/tut2_20.png
+         :alt: Welcome Window
+         :align: center
+
+   Click close
+4. Target feature: ``Label``
+5. Select all other features as training features (except ``Label``)
+      .. image:: /_static/images/tut2_21.png
+         :alt: Welcome Window
+         :align: center
+      .. image:: /_static/images/tut2_22.png
+         :alt: Welcome Window
+         :align: center
+6. Enable: ``scaled probabilities``
+7. Click **Start Training**
+8. Save model as: ``PU Model``
+      .. image:: /_static/images/tut2_23.png
+         :alt: Welcome Window
+         :align: center
+9. Go to: ``Plugins -> MPM -> Feature Generation -> Bounding Box``
+      .. image:: /_static/images/tut2_24.png
+         :alt: Welcome Window
+         :align: center
+      .. image:: /_static/images/tut2_25.png
+         :alt: Welcome Window
+         :align: center
+10. Select all layers *except*:
+    
+    - Tectonic Framework  
+    - Deposit  
+    - deposits_positive_label  
+    - bounding_box  
+    - deposits_unlabelled  
+    - training_data
+
+      .. image:: /_static/images/tut2_26.png
+         :alt: Welcome Window
+         :align: center
+
+11. Repeat selection of **Band Value** for rasters and **Euclidean Distance** for vectors
+12. Set resolution to: ``0.005 degrees``. This may be of your choice
+13. Click **Generate** → Save as: ``predicted_dataset.gpkg``. This may take a while depending on resolution and hardware specs.
+      .. image:: /_static/images/tut2_27.png
+         :alt: Welcome Window
+         :align: center
+
+      .. image:: /_static/images/tut2_28.png
+         :alt: Welcome Window
+         :align: center
+      
+14. Go to: ``Plugins -> MPM -> Models -> PU Bagging -> Existing Model``
+15. Choose: ``predicted_dataset.gpkg`` as prediction input
+      .. image:: /_static/images/tut2_29.png
+         :alt: Welcome Window
+         :align: center
+16. Click **Predict**
+
+**Voila!** You now have your PU Bagging prediction.
+      .. image:: /_static/images/tut2_30.png
+         :alt: Welcome Window
+         :align: center
+
+Final Step: Select a colormap of your choice for visualizing predictions.
+
+      .. image:: /_static/images/tut2_30.png
+         :alt: Welcome Window
+         :align: center
+
+      .. image:: /_static/images/tut2_31.png
+         :alt: Welcome Window
+         :align: center
+
+      .. image:: /_static/images/tut2_32.png
+         :alt: Welcome Window
+         :align: center
+
