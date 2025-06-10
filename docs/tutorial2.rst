@@ -337,7 +337,7 @@ Step 3: Create PU Bagging Model
          :align: center
 16. Click **Predict**
 
-**Voila!** You now have your PU Bagging prediction.
+** You now have your PU Bagging prediction.**
       .. image:: /_static/images/tut2_30.png
          :alt: Welcome Window
          :align: center

@@ -3,21 +3,21 @@ Kalpa capabilities
 
 *Kalpa* is a powerful and versatile software suite designed to cater to the needs of professionals in geology, GIS, and related fields. Leveraging advanced visualization and processing capabilities, *Kalpa* bridges the gap between geospatial data and actionable insights. Here's what *Kalpa* offers: 
 
-*Key Advantage*
+Key Advantage
 -------------
 
 One of *Kalpa*'s biggest advantages is that it is written in Python. This enables seamless integration of any Python script as a plugin, making it especially suitable for machine learning workflows and custom geospatial data processing tasks. 
 
-*Project Management* 
+Project Management
 ------------------
 **Project Creation**: Easily create and manage projects in a specific folder location to keep your work organized. 
 
-*Data Visualisation*
+Data Visualisation
 ------------------
 
 *Kalpa* supports loading and visualizing global and regional raster and vector data in both 3D spherical and cartesian coordinates using the robust VTK backend. 
 
-*Raster Data Visualisation*
+Raster Data Visualisation
 -----------------------------
 
     **Supported Formats:** Visualize raster data from diverse sources, including: 
@@ -30,14 +30,14 @@ One of *Kalpa*'s biggest advantages is that it is written in Python. This enable
 
     **Export Options:** Generate publication-ready figures in formats such as .svg, .eps, .ps, .pdf, .tex, .png, .jpeg, and .jpg. 
 
-*Vector Data Visualization*
+Vector Data Visualization
 -----------------------------
 
 **Supported Formats:** Load and visualize vector data in shapefile and GPKG formats, including points, lines, and polygons.
 
 **Applications:** Geological maps, geochemical data, structural data, lithological maps, and more.
 
-*Customization Options*
+Customization Options
 -----------------------
 
 **Raster Layers:**
@@ -54,7 +54,7 @@ Apply scalar data visualization using scientific colormaps.
 
 Add latitude and longitude grids with customizable size, width, opacity, and color to create publication-ready visuals.
 
-**Data Processing**
+Data Processing
 -----------------
 
 *Data Sampling*
@@ -85,7 +85,7 @@ Perform operations:
             - **Geophysical Data:** Apply complex potential field filters.
             - **Image Processing:** Develop filters for structural analysis, fault mapping, and more.
 
-**Machine Learning**
+Machine Learning
 ------------------
 
 *Kalpa* integrates cutting-edge machine learning models to support supervised and unsupervised tasks:
@@ -118,7 +118,7 @@ Perform operations:
     - Apply trained models to new regions for insights.
 
 
-**Utilities**
+Utilities
 --------------
 
     Resource Monitoring: Display current RAM utilization.

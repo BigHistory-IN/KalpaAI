@@ -2,6 +2,27 @@
 Installation
 ============
 
+Download Kalpa
+==============
+
+To get started, download the latest Kalpa installer for your operating system from the official website:
+
+`https://kalpa.bighistory.in/explore-kalpa <https://kalpa.bighistory.in/explore-kalpa>`_
+
+Steps:
+
+1. Click on **Download Kalpa**.
+2. Fill in the required details such as your **Name**, **Email**, and **Organization**.
+3. You will receive an email with a download link for the installer.
+
+   .. image:: /_static/images/download_kalpa.png
+      :alt: Download Kalpa
+      :align: center
+
+Kalpa is available for **Windows**, **macOS**, and **Linux**.
+
+
+
 MacOS Installation Instructions
 -------------------------------
 
@@ -18,18 +39,44 @@ MacOS Installation Instructions
     .. note::
         You may need to grant permission to launch Kalpa if your Mac does not allow installation from untrusted sources. Go to `Settings -> Privacy and Security`.
         
-Window Installation Instructions
-----------------------------------
 
-1: **Download**: The latest setup file (.exe) from the official link.
+Windows Installation Instructions
+---------------------------------
 
-2. **Install**: Double click to start installation. Click Next. Select the folder to save the installation. Check yes for desktop setup. It will take a few minutes to finish the setup.
+1. **Install**  
+   Double-click the `kalpa-setup.exe` file. A setup window will appear. Click **Next** and choose the folder where you want to install Kalpa. Make sure to check **Yes** if prompted to create a desktop shortcut. The installation may take a few minutes to complete.
 
+   .. note::
+      If you see a warning message saying *"Windows protected your PC"*, click **More Info**, then click **Run Anyway** to continue with the installation.
 
-3: **Launch**: Launch the Application.
+2. **Setup**  
+   Follow the installation wizard. Accept the license agreement, click **Next**, and confirm or change the installation directory. Proceed to complete the setup.
 
-Some datasets you can use for running Kalpa can be found here: 
-Link placeholder        
+3. **Launch**  
+   Once installed, you can launch Kalpa from the **Start Menu**. A setup wizard window will appear.
+
+4. **License Activation**  
+   - If you already have a license file, click on the **three dots** next to the *License File* field and select your license file.  
+   - If you do not have a license file, click the **Generate License** button.  
+     Fill in your details (Name, Email, Country, and Organization). Ensure that the **Name** and **Email** match the ones you provided earlier on the website:  
+     `https://kalpa.bighistory.in/explore-kalpa <https://kalpa.bighistory.in/explore-kalpa>`_
+
+   .. image:: /_static/images/windows_installation_2.png
+      :alt: Windows License Activation
+      :align: center
+
+   The license file will be saved in your system’s **Downloads** folder, typically named as `username_license.license`.
+
+   After generating or selecting the license file, click on the **three dots** again, browse to the license file, and then click **Validate**.
+
+5. **Complete Installation**  
+   Once the license is validated, Kalpa is ready to use.
+
+   .. image:: /_static/images/windows_installation_1.png
+      :alt: Windows Installation Wizard
+      :align: center
+
+  
 
 Starting Window
 ----------------

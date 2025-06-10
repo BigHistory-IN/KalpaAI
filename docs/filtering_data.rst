@@ -27,67 +27,67 @@ The ``VectorLayerFiltering`` function applies a condition to filter rows in a ve
 Examples
 --------
 
-**Single-Column Based Filtering**
+Single-Column Based Filtering
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - **Scenario**: Filter all rows where the ``Population`` column is greater than 1,000.
 - **Condition String**: ``row['Population'] > 1000``
 
-**Multi-Column Based Filtering**
+Multi-Column Based Filtering
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - **Scenario**: Filter rows where the ``Population`` is greater than 1,000 and the ``City`` starts with the letter 'C'.
 - **Condition String**: ``row['Population'] > 1000 and row['City'].startswith('C')``
 
-**Filtering Using Equality Conditions**
+Filtering Using Equality Conditions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - **Scenario**: Filter rows where the ``City`` column is equal to 'B'.
 - **Condition String**: ``row['City'] == 'B'``
 
-**Combining Conditions with OR**
+Combining Conditions with OR
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - **Scenario**: Filter rows where the ``Population`` is less than 1,000 or the ``City`` starts with 'A'.
 - **Condition String**: ``row['Population'] < 1000 or row['City'].startswith('A')``
 
-**Filtering by Distance (Geospatial Attributes)**
+Filtering by Distance (Geospatial Attributes)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - **Scenario**: Filter rows where the distance to a fault line is less than 5 km.
 - **Condition String**: ``row['Fault_Dist'] < 5``
 
-**Filtering Rows with Numerical Ranges**
+Filtering Rows with Numerical Ranges
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - **Scenario**: Filter rows where ``Population`` is between 500 and 1,500.
 - **Condition String**: ``500 <= row['Population'] <= 1500``
 
-**Filtering Rows Based on String Patterns**
+Filtering Rows Based on String Patterns
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - **Scenario**: Filter rows where the ``City`` name contains the letter 'a' (case-insensitive).
 - **Condition String**: ``row['City'].str.contains('a', case=False)``
 
-**Filtering Rows with Missing or Null Values**
+Filtering Rows with Missing or Null Values
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - **Scenario**: Filter rows where the ``geometry`` column is ``None`` (missing).
 - **Condition String**: ``row['geometry'] is None``
 
-**Filtering Rows Based on Multiple Conditions (Advanced)**
+Filtering Rows Based on Multiple Conditions (Advanced)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - **Scenario**: Filter rows where ``Population`` is greater than 1,000, and the ``City`` does not start with 'A'.
 - **Condition String**: ``row['Population'] > 1000 and not row['City'].startswith('A')``
 
-**Filtering Rows Using Custom Functions**
+Filtering Rows Using Custom Functions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - **Scenario**: Use a custom function to filter rows where the ``City`` name length is greater than 1 character.
 - **Condition String**: ``len(row['City']) > 1``
 
-**Filtering Geospatial Data by Attribute and Proximity**
+Filtering Geospatial Data by Attribute and Proximity
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - **Scenario**: Filter rows where faults are older than 50 million years and within 10 km of the grid points.
 - **Condition String**: ``row['Fault_Age'] > 50 and row['Fault_Dist'] < 10``
 
-**Filtering Using Logical OR Conditions**
+Filtering Using Logical OR Conditions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - **Scenario**: Filter rows where the ``City`` is either 'A' or 'C'.
 - **Condition String**: ``row['City'] in ['A', 'C']``
 
-**Filtering by Area or Length Attributes**
+Filtering by Area or Length Attributes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 For vector datasets with polygons or lines, you can filter by geometric properties such as area or length.
 
