@@ -36,15 +36,10 @@ Start by loading the required raster datasets:
 - All **LANDSAT8 bands** (Band 1 to Band 8).  
 - **SRTM Elevation** data.  
 
-    .. image:: /_static/images/tut1_01.png
-        :alt: Welcome Window
+    .. image:: /_static/images/Tut_1_1.png
+        :alt: Please refresh the page or check your internet connection.
         :align: center
 
-To save on RAM storage unsee the bands
-
-    .. image:: /_static/images/tut1_02.png
-        :alt: Welcome Window
-        :align: center
 
 Step 2: Load and Merge Label Files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -70,26 +65,26 @@ These shapefiles represent **17 lithology classes**, stored in the **CLASS_NAME*
 - Water  
 - Zildat Ophiolite Melange  
 
-    .. image:: /_static/images/tut1_03.png
-        :alt: Welcome Window
+    .. image:: /_static/images/Tut_1_2.png
+        :alt: Please refresh the page or check your internet connection.
         :align: center
 
 **Merge** these shapefiles into a single **GeoPackage file** named **All_Classes.gpkg** using the **"Merge Vector"** functionality in Kalpa.  
 
-    .. image:: /_static/images/tut1_04.png
-        :alt: Welcome Window
+    .. image:: /_static/images/Tut_1_3.png
+        :alt: Please refresh the page or check your internet connection.
         :align: center
 
-    .. image:: /_static/images/tut1_05.png
-        :alt: Welcome Window
+    .. image:: /_static/images/Tut_1_4.png
+        :alt: Please refresh the page or check your internet connection.
         :align: center
 
-These datasets are written in Row format, for a different dataset written columnwise, use column
+These datasets are written in Row format, for a different dataset written columnwise, use column.
 
-After merging the data you may remove the individual layers classes since all are merged in all_classes.gpkg
+After merging the data you may remove the individual layers classes since all are merged in all_classes.gpkg.
 
-    .. image:: /_static/images/tut1_06.png
-        :alt: Welcome Window
+    .. image:: /_static/images/Tut_1_5.png
+        :alt: Please refresh the page or check your internet connection.
         :align: center
 
 Step 3: Sample Training Data
@@ -97,14 +92,15 @@ Step 3: Sample Training Data
 
 Randomly **sample the raster data** (LANDSAT8 bands, SRTM Elevation) and **lithology classes** (CLASS_NAME) to create a **training dataset**:  
 
-- Select **100,000 data points**.  
-- Save the resulting file as **Training_Dataset.gpkg**. 
+1. Navigate to **Tools → Data Sampling**.
+2. Select **100,000 data points**.  
+3. Save the resulting file as **training_dataset.gpkg**. 
 
-    .. image:: /_static/images/tut1_07.png
-        :alt: Welcome Window
+    .. image:: /_static/images/Tut_1_6.png
+        :alt: Please refresh the page or check your internet connection.
         :align: center
 
-Hit create, this may take few time depending on system specifications. Save the dataset as training_dataset.gpkg
+Hit create, this may take few time depending on system specifications. Save the dataset as training_dataset.gpkg.
 
 Step 4: Build a Random Forest Classifier
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -129,27 +125,27 @@ Key Parameters:
 Training the Model:
 ^^^^^^^^^^^^^^^^^^^
 
-1. Navigate to **Model → Random Forest Classifier → Create New Model**.  
-2. Load **Training_Dataset.gpkg**.  
+1. Navigate to **Models → Supervised → Random Forest Classifier → Create New Model**.  
+2. Load **training_dataset.gpkg**.  
 3. Set the **training features** (Band1 to Band8, SRTM Elevation).  
 4. Set the **target feature** (CLASS_NAME).  
 5. Configure the **Random Forest parameters** as needed.  
 6. **Train the model** and **save it** for future use.  
 
-    .. image:: /_static/images/tut1_08.png
-        :alt: Welcome Window
+    .. image:: /_static/images/Tut_1_7.png
+        :alt: Please refresh the page or check your internet connection.
         :align: center
 
-Hit start training after chosing your parameters. For simplicity in this tutorial we are proceeding with default values
+Hit **start training** after chosing your parameters. For simplicity in this tutorial we are proceeding with default values.
 
-    .. image:: /_static/images/tut1_09.png
-        :alt: Welcome Window
+    .. image:: /_static/images/Tut_1_8.png
+        :alt: Please refresh the page or check your internet connection.
         :align: center
 
-After training save model as Model. This will create a folder named Model in the project directory
+After training, save model as RF_model. This will create a folder named RF Classifier Models in the project directory.
 
-    .. image:: /_static/images/tut1_10.png
-        :alt: Welcome Window
+    .. image:: /_static/images/Tut_1_9.png
+        :alt: Please refresh the page or check your internet connection.
         :align: center
 
 
@@ -159,59 +155,59 @@ Step 5: Predict Lithology for the Entire Region
 Step 5.1: Prepare the Prediction Dataset
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1. Define the **area of interest/region of interest** using a **bounding box** or a **shapefile**.  For this tutorial, we are training for the entire region, so we make the shapefile/ROI for the entire region
+1. Define the **area of interest/region of interest** using a **bounding box** or a **shapefile**.  For this tutorial, we are training for the entire region, so we make the shapefile/ROI for the entire region.
 
-    .. image:: /_static/images/tut1_11.png
-        :alt: Welcome Window
+    .. image:: /_static/images/Tut_1_10.png
+        :alt: Please refresh the page or check your internet connection.
         :align: center
 
-You may chose any of the bands to extract the region in this tutorial, since they all represent the same region
+You may chose any of the bands to extract the region in this tutorial, since they all represent the same region.
 
-    .. image:: /_static/images/tut1_12.png
-        :alt: Welcome Window
+    .. image:: /_static/images/Tut_1_11.png
+        :alt: Please refresh the page or check your internet connection.
         :align: center
 
-Click create after chosing the bands and save as bounding_box.gpkg
+Click **create** after chosing the band and save as bounding_box.gpkg.
 
 
 2. **Sample raster data** at **regular grid intervals**. Exclude picking any classes since it will be predicted later using ML models. Select AOI as bounding_box which was produced earlier. Define resolution you want in degrees, not in m or km. For eg. 0.05 degree is approx 0.001km or 10m
 
-    .. image:: /_static/images/tut1_13.png
-        :alt: Welcome Window
+    .. image:: /_static/images/Tut_1_12.png
+        :alt: Please refresh the page or check your internet connection.
         :align: center
 
-Hit create. This will take a few moment, and save the sampled dataset as predition_dataset.gpkg
+Hit **create**. This will take a few moment, and save the sampled dataset as predition_dataset.gpkg.
 
-3. Save the sampled dataset as **Prediction_Dataset.gpkg**.  
+3. Save the sampled dataset as **prediction_dataset.gpkg**.  
 
 Step 5.2: Perform Prediction
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1. Navigate to **Models → Random Forest Classifier → Existing Model**.  
+1. Navigate to **Models → Supervised → Random Forest Classifier → Existing Model**.  
 2. **Load** the trained model.  
 
-    .. image:: /_static/images/tut1_14.png
-        :alt: Welcome Window
+    .. image:: /_static/images/Tut_1_13.png
+        :alt: Please refresh the page or check your internet connection.
         :align: center
 
-3. Select **Prediction_Dataset.gpkg** for prediction.  
+3. Select **prediction_dataset.gpkg** for prediction.  
 
-    .. image:: /_static/images/tut1_15.png
-        :alt: Welcome Window
+    .. image:: /_static/images/Tut_1_14.png
+        :alt: Please refresh the page or check your internet connection.
         :align: center
 
-Click Predict and save as predicted_dataset.gpkg
+Click **Predict** and save as predicted_dataset.gpkg.
 
 4. **Save** and **visualize** the **predicted lithology layer**.  
 
-Navigate to Predicted_CLASS_NAME from the predicted_dataset layer
+Navigate to Predicted_CLASS_NAME from the predicted_dataset layer.
 
-    .. image:: /_static/images/tut1_16.png
-        :alt: Welcome Window
+    .. image:: /_static/images/Tut_1_15.png
+        :alt: Please refresh the page or check your internet connection.
         :align: center
 
 Enjoy!!!
 
-    .. image:: /_static/images/tut1_17.png
-        :alt: Welcome Window
+    .. image:: /_static/images/Tut_1_16.png
+        :alt: Please refresh the page or check your internet connection.
         :align: center

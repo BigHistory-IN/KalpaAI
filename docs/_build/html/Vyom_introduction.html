@@ -1,0 +1,602 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>On Demand Satellite Data through Vyom &#8212; Kalpa  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Vyom_introduction';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Geophysical Data Processing using Kalpa" href="Geophysics_plugin.html" />
+    <link rel="prev" title="Data Plotting and Analytics" href="Analytics_plotter.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Kalpa  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">What can Kalpa Do?</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="what_can_kalpa_do.html">Kalpa capabilities</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Hands on!</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_folder.html">Setting up project folder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main_window.html">The Main Window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loading_and_visualising_data.html">Loading and visualising data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="grid_settings.html">Grid Settings and View Controls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creating_data_geod_engg_ai.html">Creating Data for Geodata Engineering and Artificial Intelligence Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vector_operations.html">Vector operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster_operations.html">Raster operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_kalpa_minex_plus.html">Advanced Geophysical and Image Processing Calculations in Kalpa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Analytics_plotter.html">Data Plotting and Analytics</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">On Demand Satellite Data through Vyom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Geophysics_plugin.html">Geophysical Data Processing using Kalpa</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="tutorial1.html">Tutorial 1: Classifying Lithology Types in the Ladakh Region Using Kalpa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial2.html">Tutorial 2: Simple Mineral Prospectivity Maps with Kalpa</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="tutorial3.html">Tutorial 3: Mapping Deforestation in South Andaman Island Using Vyom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial4.html">Tutorial 4: Monitoring Crop Health in Wimmera, Victoria with Sentinel-2 and NDVI</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Vyom_introduction.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>On Demand Satellite Data through Vyom</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-and-visualizing-satellite-data-with-vyom">Downloading and Visualizing Satellite Data with Vyom</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-satellite-indices-with-vyom">Calculate Satellite Indices with Vyom</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#available-indices">Available Indices</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="on-demand-satellite-data-through-vyom">
+<h1>On Demand Satellite Data through Vyom<a class="headerlink" href="#on-demand-satellite-data-through-vyom" title="Link to this heading">#</a></h1>
+<p>Vyom is designed for efficient and flexible access to satellite Earth observation data. It empowers you to search, preprocess, and extract exactly the data you need, at the resolution you want, before downloading anything. Built for speed, Vyom allows you to work with decades of satellite archives across large regions without the bottleneck of full-resolution downloads. Whether for research, environmental monitoring, or geospatial AI, Vyom reduces data overhead while giving you the flexibility to analyze what matters most.</p>
+<section id="downloading-and-visualizing-satellite-data-with-vyom">
+<h2>Downloading and Visualizing Satellite Data with Vyom<a class="headerlink" href="#downloading-and-visualizing-satellite-data-with-vyom" title="Link to this heading">#</a></h2>
+<ol class="arabic">
+<li><dl>
+<dt><strong>Define Area of Interest</strong></dt><dd><ul>
+<li><p>Navigate to <strong>Tools → Vector → Bounding Box</strong>.</p></li>
+<li><p>Set the longitude and latitude range for your area of interest or select a layer from the Layer window.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/vy_1_2.png" />
+</div></blockquote>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>Access Vyom</strong></dt><dd><ul>
+<li><p>Open Kalpa and navigate to the <strong>Plugins &gt; Vyom &gt; Download Satellite Data</strong>.</p></li>
+<li><p>A new window will appear where you can input the download information.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/vy_1_1.png" />
+</div></blockquote>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>Input Download Parameters</strong></dt><dd><ul>
+<li><p>Select the satellite, time period, resolution, and maximum cloud cover percentage for the data you wish to download.</p></li>
+<li><p>Click <strong>Next</strong>.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/vy_2.png" />
+<img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/vy_3.png" />
+</div></blockquote>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>Select Dates and Satellite Band</strong></dt><dd><ul>
+<li><p>Choose from the available dates within the selected time period and select the desired satellite band/bands.</p></li>
+<li><p>Click <strong>Download</strong>.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/vy_4.png" />
+<img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/vy_5.png" />
+</div></blockquote>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>Visualize and Save Data</strong></dt><dd><ul>
+<li><p>Once the data is downloaded, visualize it in Kalpa and save the raster files for future use.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/vy_6.png" />
+</div></blockquote>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</section>
+<section id="calculate-satellite-indices-with-vyom">
+<h2>Calculate Satellite Indices with Vyom<a class="headerlink" href="#calculate-satellite-indices-with-vyom" title="Link to this heading">#</a></h2>
+<p>Vyom also allows you to compute various satellite indices directly during the data download process. This feature is particularly useful for applications in agriculture, forestry, water resource management, and environmental monitoring.</p>
+<ol class="arabic">
+<li><dl>
+<dt><strong>Define Area of Interest</strong></dt><dd><ul>
+<li><p>Navigate to <strong>Tools → Vector → Bounding Box</strong>.</p></li>
+<li><p>Set the longitude and latitude range for your area of interest or select a layer from the Layer window.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/vy_1_2.png" />
+</div></blockquote>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>Access Vyom</strong></dt><dd><ul>
+<li><p>Open Kalpa and navigate to the <strong>Plugins &gt; Vyom &gt; Satellite Indices</strong></p></li>
+<li><p>A new window will appear where you can input the download information.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/vy_7.png" />
+</div></blockquote>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>Input Download Parameters</strong></dt><dd><ul>
+<li><p>Select the satellite, time period, resolution, and maximum cloud cover percentage for the data you wish to download.</p></li>
+<li><p>Click <strong>Next</strong>.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/vy_8.png" />
+<img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/vy_9.png" />
+</div></blockquote>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>Select Dates and Indices</strong></dt><dd><ul>
+<li><p>Choose from the available dates within the selected time period and select the desired satellite indices to compute.</p></li>
+<li><p>Click <strong>Calculate</strong>.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/vy_10.png" />
+</div></blockquote>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><strong>Visualize and Save Data</strong></dt><dd><ul>
+<li><p>Once the indices are calculated and data is downloaded, visualize it in Kalpa and save the raster files for future use.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/vy_11.png" />
+</div></blockquote>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</section>
+<section id="available-indices">
+<h2>Available Indices<a class="headerlink" href="#available-indices" title="Link to this heading">#</a></h2>
+<p>Vyom supports the calculation of several commonly used satellite indices:</p>
+<ul class="simple">
+<li><p><strong>Normalized Difference Vegetation Index (NDVI)</strong>: Used to assess vegetation health.</p></li>
+<li><p><strong>Enhanced Vegetation Index (EVI)</strong>: Provides improved sensitivity in high biomass regions.</p></li>
+<li><p><strong>Soil Adjusted Vegetation Index (SAVI)</strong>: Minimizes soil brightness influences in vegetation studies.</p></li>
+<li><p><strong>Green Normalized Difference Vegetation Index (GNDVI)</strong>: Utilizes green light reflectance for vegetation monitoring.</p></li>
+<li><p><strong>Normalized Difference Water Index (NDWI)</strong>: Used for monitoring changes in water content of leaves and water bodies.</p></li>
+<li><p><strong>Modified Normalized Difference Water Index (MNDWI)</strong>: Enhances open water features while suppressing built-up land noise.</p></li>
+<li><p><strong>Normalized Burn Ratio (NBR)</strong>: Used to identify burned areas and monitor fire recovery.</p></li>
+<li><p><strong>Second Normalized Burn Ratio (NBR2)</strong>: Provides additional information for burn severity assessment.</p></li>
+<li><p><strong>Normalized Difference Moisture Index (NDMI)</strong>: Used to monitor changes in vegetation water content.</p></li>
+<li><p><strong>Normalized Difference Built-up Index (NDBI)</strong>: Used to map urban built-up areas.</p></li>
+<li><p><strong>Normalized Difference Snow Index (NDSI)</strong>: Used to identify snow cover.</p></li>
+<li><p><strong>Iron Oxide Index (IOI)</strong>: Used to detect iron oxide minerals.</p></li>
+<li><p><strong>Clay Mineral Index (CMI)</strong>: Used to identify clay minerals.</p></li>
+<li><p><strong>Hydroxyl Index (HI)</strong>: Used to detect hydroxyl-bearing minerals.</p></li>
+<li><p><strong>Sericite Index (SI)</strong>: Used to identify sericite minerals.</p></li>
+<li><p><strong>Alunite Index (AI)</strong>: Used to detect alunite minerals.</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Analytics_plotter.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Data Plotting and Analytics</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Geophysics_plugin.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Geophysical Data Processing using Kalpa</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-and-visualizing-satellite-data-with-vyom">Downloading and Visualizing Satellite Data with Vyom</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-satellite-indices-with-vyom">Calculate Satellite Indices with Vyom</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#available-indices">Available Indices</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Kalpa
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Kalpa.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

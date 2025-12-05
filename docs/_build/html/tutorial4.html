@@ -1,0 +1,556 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Tutorial 4: Monitoring Crop Health in Wimmera, Victoria with Sentinel-2 and NDVI &#8212; Kalpa  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorial4';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Tutorial 3: Mapping Deforestation in South Andaman Island Using Vyom" href="tutorial3.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Kalpa  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">What can Kalpa Do?</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="what_can_kalpa_do.html">Kalpa capabilities</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Hands on!</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_folder.html">Setting up project folder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main_window.html">The Main Window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loading_and_visualising_data.html">Loading and visualising data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="grid_settings.html">Grid Settings and View Controls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creating_data_geod_engg_ai.html">Creating Data for Geodata Engineering and Artificial Intelligence Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vector_operations.html">Vector operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster_operations.html">Raster operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_kalpa_minex_plus.html">Advanced Geophysical and Image Processing Calculations in Kalpa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Analytics_plotter.html">Data Plotting and Analytics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Vyom_introduction.html">On Demand Satellite Data through Vyom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Geophysics_plugin.html">Geophysical Data Processing using Kalpa</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="tutorial1.html">Tutorial 1: Classifying Lithology Types in the Ladakh Region Using Kalpa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial2.html">Tutorial 2: Simple Mineral Prospectivity Maps with Kalpa</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="tutorial3.html">Tutorial 3: Mapping Deforestation in South Andaman Island Using Vyom</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Tutorial 4: Monitoring Crop Health in Wimmera, Victoria with Sentinel-2 and NDVI</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/tutorial4.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Tutorial 4: Monitoring Crop Health in Wimmera, Victoria with Sentinel-2 and NDVI</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-overview">Dataset Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow">Workflow</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-create-a-bounding-box">Step 1: Create a Bounding Box</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-download-satellite-data-using-vyom">Step 2: Download Satellite Data Using Vyom</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-calculate-ndvi">Step 3: Calculate NDVI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-visualize-ndvi-results">Step 4: Visualize NDVI Results</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="tutorial-4-monitoring-crop-health-in-wimmera-victoria-with-sentinel-2-and-ndvi">
+<h1>Tutorial 4: Monitoring Crop Health in Wimmera, Victoria with Sentinel-2 and NDVI<a class="headerlink" href="#tutorial-4-monitoring-crop-health-in-wimmera-victoria-with-sentinel-2-and-ndvi" title="Link to this heading">#</a></h1>
+<p>Tutorial by</p>
+<p><strong>Utpal Singh¹</strong>, <strong>Satyam Pratap Singh¹</strong>, <strong>Sourabh Motiani²</strong></p>
+<p>¹ School of Geosciences, University of Sydney</p>
+<p>² Department of Earth Sciences, Indian Institute of Technology Roorkee</p>
+<hr class="docutils" />
+<p>This tutorial demonstrates how to <strong>monitor crop health</strong> in the <strong>Wimmera region of Victoria</strong> using <strong>Kalpa</strong>. We will use the <strong>vyom plugin</strong> to download satellite data and use kalpa’s Data Sampling and Vector Calculator to compute the <strong>Normalized Difference Vegetation Index (NDVI)</strong> from satellite data.</p>
+<section id="dataset-overview">
+<h2>Dataset Overview<a class="headerlink" href="#dataset-overview" title="Link to this heading">#</a></h2>
+<p>For this task, we use:
+Sentinel-2 Bands: Multispectral bands (4 and 8) for the duration of April to August for year 2023 and 2024.</p>
+</section>
+<section id="workflow">
+<h2>Workflow<a class="headerlink" href="#workflow" title="Link to this heading">#</a></h2>
+<section id="step-1-create-a-bounding-box">
+<h3>Step 1: Create a Bounding Box<a class="headerlink" href="#step-1-create-a-bounding-box" title="Link to this heading">#</a></h3>
+<p>Start by creating a bounding box of the region.</p>
+<ol class="arabic">
+<li><p>Navigate to <strong>Tools → Vector → Bounding Box</strong>.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_4_1.png" />
+</div></blockquote>
+</li>
+<li><p>Set the X and Y range for the Wimmera region in Victoria.</p></li>
+</ol>
+</section>
+<section id="step-2-download-satellite-data-using-vyom">
+<h3>Step 2: Download Satellite Data Using Vyom<a class="headerlink" href="#step-2-download-satellite-data-using-vyom" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p>Navigate to <strong>Plugins → Vyom → Download Satellite Data</strong>.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_4_2.png" />
+</div></blockquote>
+</li>
+<li><p>Select the satellite and enter the time period for which data is required.</p></li>
+<li><p>Select the resolution and maximum percentage of cloud cover for the data to be downloaded.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_4_3.png" />
+</div></blockquote>
+</li>
+<li><p>Click <strong>Next</strong>.</p></li>
+<li><p>Choose from the available dates within the selected time period and select <strong>B04</strong> and <strong>B08</strong>.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_4_4.png" />
+</div></blockquote>
+</li>
+<li><p>Click <strong>Download</strong>.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_4_5.png" />
+</div></blockquote>
+</li>
+<li><p>Visualize and save the satellite data.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_4_6.png" />
+</div></blockquote>
+</li>
+<li><p>Repeat the process to download the satellite data for other months of 2023 and 2024.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_4_7.png" />
+</div></blockquote>
+</li>
+</ol>
+</section>
+<section id="step-3-calculate-ndvi">
+<h3>Step 3: Calculate NDVI<a class="headerlink" href="#step-3-calculate-ndvi" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p>Navigate to <strong>Tools → Data Sampling</strong>.</p></li>
+<li><p>AOI (Area of Interest): <strong>Bounding Box</strong>.</p></li>
+<li><p>Select the downloaded Sentinel-2 bands (B04 and B08) for all dates of 2023 and 2024.</p></li>
+<li><p>Select <strong>Regular</strong> sampling method with same resolution as the satellite data.</p></li>
+<li><p>Click <strong>Create</strong>.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_4_8.png" />
+</div></blockquote>
+</li>
+<li><p>save as <code class="docutils literal notranslate"><span class="pre">processed_dataset.gpkg</span></code>.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_4_9.png" />
+</div></blockquote>
+</li>
+<li><p>Navigate to <strong>Tools → Vector → Vector Calculator</strong>.</p></li>
+<li><p>Select the <code class="docutils literal notranslate"><span class="pre">processed_dataset.gpkg</span></code> layer.</p></li>
+<li><p>In the expression box, enter the NDVI formula with the respective band names.</p></li>
+<li><p>Click <strong>Apply</strong> and save as <code class="docutils literal notranslate"><span class="pre">NDVI_2023_04_2018_calculated.gpkg</span></code>.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_4_10.png" />
+<img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_4_11.png" />
+</div></blockquote>
+</li>
+<li><p>Repeat the process to calculate NDVI for other months in 2023 and 2024.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_4_12.png" />
+</div></blockquote>
+</li>
+</ol>
+<ul class="simple">
+<li><p><strong>Note</strong>: The same process of calculating NDVI can also be performed using Vyom’s Satellite Indices feature, but this workflow could be useful in case of calculating other satellite indices which are not available in Vyom’s Satellite Indices feature.</p></li>
+</ul>
+</section>
+<section id="step-4-visualize-ndvi-results">
+<h3>Step 4: Visualize NDVI Results<a class="headerlink" href="#step-4-visualize-ndvi-results" title="Link to this heading">#</a></h3>
+<ul>
+<li><p>Visualize the NDVI results for different months to monitor crop health.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_4_fin.jpeg" />
+</div></blockquote>
+</li>
+</ul>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="tutorial3.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Tutorial 3: Mapping Deforestation in South Andaman Island Using Vyom</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-overview">Dataset Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow">Workflow</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-create-a-bounding-box">Step 1: Create a Bounding Box</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-download-satellite-data-using-vyom">Step 2: Download Satellite Data Using Vyom</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-calculate-ndvi">Step 3: Calculate NDVI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-visualize-ndvi-results">Step 4: Visualize NDVI Results</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Kalpa
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Kalpa.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

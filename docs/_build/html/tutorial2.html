@@ -1,0 +1,807 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Tutorial 2: Simple Mineral Prospectivity Maps with Kalpa &#8212; Kalpa  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorial2';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tutorial 3: Mapping Deforestation in South Andaman Island Using Vyom" href="tutorial3.html" />
+    <link rel="prev" title="Tutorial 1: Classifying Lithology Types in the Ladakh Region Using Kalpa" href="tutorial1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Kalpa  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">What can Kalpa Do?</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="what_can_kalpa_do.html">Kalpa capabilities</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Hands on!</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_folder.html">Setting up project folder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main_window.html">The Main Window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loading_and_visualising_data.html">Loading and visualising data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="grid_settings.html">Grid Settings and View Controls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creating_data_geod_engg_ai.html">Creating Data for Geodata Engineering and Artificial Intelligence Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vector_operations.html">Vector operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster_operations.html">Raster operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_kalpa_minex_plus.html">Advanced Geophysical and Image Processing Calculations in Kalpa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Analytics_plotter.html">Data Plotting and Analytics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Vyom_introduction.html">On Demand Satellite Data through Vyom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Geophysics_plugin.html">Geophysical Data Processing using Kalpa</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="tutorial1.html">Tutorial 1: Classifying Lithology Types in the Ladakh Region Using Kalpa</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Tutorial 2: Simple Mineral Prospectivity Maps with Kalpa</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="tutorial3.html">Tutorial 3: Mapping Deforestation in South Andaman Island Using Vyom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial4.html">Tutorial 4: Monitoring Crop Health in Wimmera, Victoria with Sentinel-2 and NDVI</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/tutorial2.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Tutorial 2: Simple Mineral Prospectivity Maps with Kalpa</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Tutorial 2: Simple Mineral Prospectivity Maps with Kalpa</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-overview">Dataset Overview</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geophysical-data">Geophysical Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geological-data">Geological Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#satellite-data">Satellite Data</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow">Workflow</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-loading-data-and-visualization">Step 1: Loading Data and Visualization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-feature-generation">Step 2: Feature Generation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-create-pu-bagging-model">Step 3: Create PU Bagging Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-prediction-and-visualization">Step 4: Prediction and Visualization</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="tutorial-2-simple-mineral-prospectivity-maps-with-kalpa">
+<h1>Tutorial 2: Simple Mineral Prospectivity Maps with Kalpa<a class="headerlink" href="#tutorial-2-simple-mineral-prospectivity-maps-with-kalpa" title="Link to this heading">#</a></h1>
+<p>Tutorial by</p>
+<p><strong>Utpal Singh¹</strong>, <strong>Satyam Pratap Singh¹</strong>, <strong>Sourabh Motiani²</strong></p>
+<p>¹ School of Geosciences, University of Sydney</p>
+<p>² Department of Earth Sciences, Indian Institute of Technology Roorkee</p>
+<hr class="docutils" />
+<p>In this tutorial, we will use <strong>Kalpa</strong> to build a <strong>mineral prospectivity map</strong>.
+The process utilizes three types of datasets:</p>
+<ul class="simple">
+<li><p><strong>Geophysical data</strong> (e.g., Bouguer Gravity Anomaly, Magnetic Anomaly)</p></li>
+<li><p><strong>Geological data</strong> (e.g., geological age, folds, faults, lineaments)</p></li>
+<li><p><strong>Satellite data</strong> (e.g., ASTER, SRTM, and LANDSAT)</p></li>
+</ul>
+<p>The goal is to create <strong>prospectivity maps for copper deposits</strong> based on the known occurrences of <strong>96 mineral deposits</strong> in the study region.</p>
+<p>We will sample various datasets at the locations of <strong>known copper occurrences</strong>, create an <strong>unlabeled dataset</strong> for contrast, and use <strong>Random Forest (RF)</strong> classifier and regressor to label and map prospectivity.</p>
+</section>
+<section id="dataset-overview">
+<h1>Dataset Overview<a class="headerlink" href="#dataset-overview" title="Link to this heading">#</a></h1>
+<p>The dataset can be downloaded here.</p>
+<section id="geophysical-data">
+<h2>Geophysical Data<a class="headerlink" href="#geophysical-data" title="Link to this heading">#</a></h2>
+<p><strong>Gravity Data:</strong></p>
+<ul class="simple">
+<li><p>Observed Gravity</p></li>
+<li><p>Theoretical Gravity</p></li>
+<li><p>Bouguer Anomaly</p></li>
+<li><p>Upward Continued Bouguer Anomaly</p></li>
+<li><p>Directional Derivatives of Bouguer Anomaly</p></li>
+</ul>
+<p><strong>Magnetic Data:</strong></p>
+<ul class="simple">
+<li><p>Observed Magnetism</p></li>
+<li><p>IGRF</p></li>
+<li><p>Magnetic Anomaly</p></li>
+<li><p>Upward Continued Magnetic Anomaly</p></li>
+<li><p>Directional Derivatives of Magnetic Anomaly</p></li>
+</ul>
+</section>
+<section id="geological-data">
+<h2>Geological Data<a class="headerlink" href="#geological-data" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Tectonic Age</p></li>
+<li><p>Folds</p></li>
+<li><p>Faults</p></li>
+<li><p>Lineaments</p></li>
+</ul>
+</section>
+<section id="satellite-data">
+<h2>Satellite Data<a class="headerlink" href="#satellite-data" title="Link to this heading">#</a></h2>
+<p><strong>LANDSAT8 Bands:</strong></p>
+<ul class="simple">
+<li><p>Multispectral bands (1 to 9) as NetCDF files</p></li>
+</ul>
+<p><strong>SRTM Elevation Data:</strong></p>
+<ul class="simple">
+<li><p>Elevation values from the Shuttle Radar Topography Mission (SRTM)</p></li>
+</ul>
+<p><strong>ASTER Data:</strong></p>
+<ul class="simple">
+<li><p>Multispectral bands (1 to 14) as NetCDF files</p></li>
+</ul>
+<p><strong>Mineral Occurrences:</strong></p>
+<ul class="simple">
+<li><p>The dataset includes 96 known occurrences of mineral deposits.
+For this tutorial, we focus on copper deposits.</p></li>
+</ul>
+</section>
+</section>
+<section id="workflow">
+<h1>Workflow<a class="headerlink" href="#workflow" title="Link to this heading">#</a></h1>
+<section id="step-1-loading-data-and-visualization">
+<h2>Step 1: Loading Data and Visualization<a class="headerlink" href="#step-1-loading-data-and-visualization" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Start Kalpa and create a new folder named <code class="docutils literal notranslate"><span class="pre">MineralProspectivity</span></code> to save the dataset, figures, etc.</p></li>
+</ul>
+<p><strong>Import Vector Data:</strong></p>
+<ul>
+<li><p>Navigate to <strong>File &gt; Import &gt; Vector Data</strong>.</p></li>
+<li><p>Load the following files:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ShapeFiles/Fault_Tectonic.shp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ShapeFiles/Fold_Tectonic.shp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ShapeFiles/Lineament_Tectonic.shp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ShapeFiles/Tectonic_Framework.shp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Deposits/Deposits.shp</span></code></p></li>
+</ul>
+</li>
+<li><p>Adjust colormap, feature width, and range as needed.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_2_1.png" />
+</div></blockquote>
+</li>
+</ul>
+<p><strong>Import Raster Data:</strong></p>
+<ul>
+<li><p>Navigate to <strong>File &gt; Import &gt; Raster Data</strong>.</p></li>
+<li><p>Load the following files:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">GeophysicalProcessed/Raster/BOUGUER_AN_Kriging.nc</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GeophysicalProcessed/Raster/MAGNETIC_A_Kriging.nc</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GeophysicalProcessed/Raster/Grad_Gravity/*</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GeophysicalProcessed/Raster/Grad_Magnetic/*</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GeophysicalProcessed/Raster/UC_Gravity/*</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GeophysicalProcessed/Raster/UC_Magnetic/*</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SatelliteData/SRTM/SRTM_Raj_India.nc</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SatelliteData/LANDSAT/Band_1_LANDSAT.nc</span></code> to <code class="docutils literal notranslate"><span class="pre">Band_9_LANDSAT.nc</span></code></p>
+<img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_2_2.png" />
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="step-2-feature-generation">
+<h2>Step 2: Feature Generation<a class="headerlink" href="#step-2-feature-generation" title="Link to this heading">#</a></h2>
+<ol class="arabic">
+<li><p><strong>Generate Positive Labels from Known Deposits:</strong></p>
+<ul class="simple">
+<li><p>Navigate to <strong>Tools → Data Sampling</strong>.</p></li>
+<li><p>AOI (Area of Interest): <strong>Deposit</strong>.</p></li>
+<li><p>Select all layers <strong>except</strong> Tectonic Framework and Deposit.</p></li>
+</ul>
+<p><strong>Layer Configuration:</strong></p>
+<ul class="simple">
+<li><p>Select the columns to be sampled for vectors having multiple columns:</p>
+<ul>
+<li><p>Fault_Tectonic</p></li>
+<li><p>Fold_Tectonic</p></li>
+<li><p>Lineament_Tectonic</p></li>
+</ul>
+</li>
+<li><p>For rasters, select <strong>Band Value</strong> in case of multiple bands.</p></li>
+<li><p>Sampling method: <strong>Random</strong> with default seed points as number of deposits are less than default value in this case.</p></li>
+</ul>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_2_3.png" />
+</div></blockquote>
+<ul class="simple">
+<li><p>Click <strong>Create</strong> → Save as: <code class="docutils literal notranslate"><span class="pre">Positive_samples.gpkg</span></code>.</p></li>
+</ul>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_2_4.png" />
+</div></blockquote>
+<img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_2_5.png" />
+</li>
+<li><p><strong>Create Bounding Box:</strong></p>
+<ul class="simple">
+<li><p>Navigate to <strong>Tools → Vector → Bounding Box</strong>.</p></li>
+<li><p>Select layer: <code class="docutils literal notranslate"><span class="pre">BOUGUER_AN_Kriging</span></code></p></li>
+</ul>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_2_6.png" />
+</div></blockquote>
+<ul class="simple">
+<li><p>Click <strong>Create</strong> → Save as: <code class="docutils literal notranslate"><span class="pre">bounding_box.gpkg</span></code>.</p></li>
+</ul>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_2_7.png" />
+</div></blockquote>
+</li>
+<li><p><strong>Generate Unlabelled Features:</strong></p>
+<ul class="simple">
+<li><p>AOI: <strong>bounding_box</strong>.</p></li>
+<li><p>Select all layers <em>except</em> Tectonic Framework, Deposit, bounding_box, Positive_samples.</p></li>
+<li><p>Method: <strong>Random</strong>, 3000 seed points.</p></li>
+</ul>
+<p><strong>Layer Config:</strong></p>
+<ul class="simple">
+<li><p>Select the columns to be sampled for vectors having multiple columns:</p>
+<ul>
+<li><p>Fault_Tectonic</p></li>
+<li><p>Fold_Tectonic</p></li>
+<li><p>Lineament_Tectonic</p></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_2_8.png" />
+<img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_2_9.png" />
+</div></blockquote>
+<ul class="simple">
+<li><p>Click <strong>Create</strong>.</p></li>
+</ul>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_2_10.png" />
+</div></blockquote>
+<ul class="simple">
+<li><p>Save as: <code class="docutils literal notranslate"><span class="pre">Unlabelled_samples.gpkg</span></code></p></li>
+</ul>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_2_11.png" />
+</div></blockquote>
+</li>
+<li><p><strong>Generate Label Column:</strong></p>
+<ul class="simple">
+<li><p>Navigate to <strong>Tools → Vector → Calculator</strong>.</p></li>
+<li><p>Layer: <strong>Positive_samples</strong>.</p></li>
+<li><p>Condition: <strong>‘1’</strong> for positive samples.</p></li>
+<li><p>Column name: <strong>Label</strong>.</p></li>
+<li><p>Click <strong>Apply</strong>.</p></li>
+</ul>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_2_12.png" />
+</div></blockquote>
+<ul class="simple">
+<li><p>Save as: <code class="docutils literal notranslate"><span class="pre">Positive_Label_calculated.gpkg</span></code></p></li>
+<li><p>Repeat the same steps for <strong>Unlabelled_samples</strong> with condition <strong>‘0’</strong>.</p></li>
+<li><p>Save as: <code class="docutils literal notranslate"><span class="pre">Negative_Label_calculated.gpkg</span></code></p></li>
+</ul>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_2_13.png" />
+</div></blockquote>
+</li>
+<li><p><strong>Merge Positive and Unlabelled Datasets:</strong></p>
+<ul>
+<li><p>Navigate to <strong>Tools → Vector → Merge Layers</strong>.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_2_14.png" />
+</div></blockquote>
+</li>
+<li><p>Layers: <strong>Positive_Label_calculated.gpkg</strong> and <strong>Negative_Label_calculated.gpkg</strong>.</p></li>
+<li><p>Merge direction: <strong>Row</strong> Wise.</p></li>
+<li><p>Click <strong>Merge</strong>.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_2_15.png" />
+</div></blockquote>
+</li>
+<li><p>Save as: <code class="docutils literal notranslate"><span class="pre">Training_Dataset.gpkg</span></code></p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_2_16.png" />
+</div></blockquote>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="step-3-create-pu-bagging-model">
+<h2>Step 3: Create PU Bagging Model<a class="headerlink" href="#step-3-create-pu-bagging-model" title="Link to this heading">#</a></h2>
+<ol class="arabic">
+<li><p>Navigate to <strong>Models → Supervised → PU Bagging</strong>.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_2_17.png" />
+</div></blockquote>
+</li>
+<li><p>Select <strong>Create New Model</strong>.</p></li>
+<li><p>Training data: <code class="docutils literal notranslate"><span class="pre">Training_Dataset.gpkg</span></code>.</p></li>
+<li><p>(Optional) Generate correlation report to examine feature correlation.</p></li>
+<li><p>Target feature: <strong>Label</strong>.</p></li>
+<li><p>Select all other features as training features (except <strong>Label</strong>).</p></li>
+<li><p>Tune other hyperparameters as needed.</p></li>
+<li><p>Enable: <strong>scaled probabilities</strong>.</p></li>
+<li><p>Click <strong>Start Training</strong>.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_2_18.png" />
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic" start="8">
+<li><p>Save model as: <code class="docutils literal notranslate"><span class="pre">PU_Model</span></code></p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_2_19.png" />
+</div></blockquote>
+</li>
+</ol>
+</section>
+<section id="step-4-prediction-and-visualization">
+<h2>Step 4: Prediction and Visualization<a class="headerlink" href="#step-4-prediction-and-visualization" title="Link to this heading">#</a></h2>
+<ol class="arabic">
+<li><p><strong>Extracting Regular Grid for Prediction:</strong></p>
+<ul class="simple">
+<li><p>Navigate to <strong>Tools → Data Sampling</strong>.</p></li>
+<li><p>AOI: <strong>bounding_box</strong>.</p></li>
+<li><p>Select all layers <em>except</em>:</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>Tectonic Framework</p></li>
+<li><p>Deposit</p></li>
+<li><p>Positive_samples</p></li>
+<li><p>Unlabelled_samples</p></li>
+<li><p>bounding_box</p></li>
+<li><p>Training_Dataset</p></li>
+<li><p>Positive_Label_calculated</p></li>
+<li><p>Negative_Label_calculated</p></li>
+</ul>
+</div></blockquote>
+<ul>
+<li><p>Sampling method: <strong>Regular</strong>.</p></li>
+<li><p>Set resolution to: <strong>0.05 degrees</strong>. This may be of your choice.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_2_20.png" />
+</div></blockquote>
+</li>
+<li><p>Click <strong>Create</strong>. Save as: <code class="docutils literal notranslate"><span class="pre">Testing_Dataset.gpkg</span></code>.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_2_21.png" />
+</div></blockquote>
+</li>
+</ul>
+</li>
+<li><p><strong>Prediction using Trained Model:</strong></p>
+<ul>
+<li><p>Navigate to <strong>Models → Supervised → PU Bagging</strong>.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_2_22.png" />
+</div></blockquote>
+</li>
+<li><p>Select <strong>Existing Model</strong>.</p></li>
+<li><p>Select <strong>PU_Model</strong>.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_2_23.png" />
+</div></blockquote>
+</li>
+<li><p>Choose: <code class="docutils literal notranslate"><span class="pre">Testing_Dataset.gpkg</span></code> as Data for Prediction.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_2_24.png" />
+</div></blockquote>
+</li>
+<li><p>Click <strong>Predict</strong></p></li>
+<li><p><strong>You now have your PU Bagging prediction.</strong></p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_2_25.png" />
+<img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_2_26.png" />
+</div></blockquote>
+</li>
+</ul>
+</li>
+<li><p><strong>Visualizing Prospectivity Map:</strong></p>
+<ul>
+<li><p>Adjust colormap of your choice for better visualization and overlay the deposits layer to see how well the model has performed.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_2_27.png" />
+</div></blockquote>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="tutorial1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Tutorial 1: Classifying Lithology Types in the Ladakh Region Using Kalpa</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="tutorial3.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Tutorial 3: Mapping Deforestation in South Andaman Island Using Vyom</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Tutorial 2: Simple Mineral Prospectivity Maps with Kalpa</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-overview">Dataset Overview</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geophysical-data">Geophysical Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geological-data">Geological Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#satellite-data">Satellite Data</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow">Workflow</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-loading-data-and-visualization">Step 1: Loading Data and Visualization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-feature-generation">Step 2: Feature Generation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-create-pu-bagging-model">Step 3: Create PU Bagging Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-prediction-and-visualization">Step 4: Prediction and Visualization</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Kalpa
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Kalpa.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

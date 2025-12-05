@@ -1,5 +1,5 @@
-Advanced Geophysical and Image Processing Calculations in Kalpa MineX+
-======================================================================
+Advanced Geophysical and Image Processing Calculations in Kalpa
+===============================================================
 
 In this section, we introduce **complex equations** commonly used in **geophysical signal processing** or **image processing** that you can implement directly in **Kalpa's Vector Calculator**. These calculations help you derive **meaningful attributes** from your geospatial datasets, particularly for **machine learning**, **geophysical modeling**, or **data visualization**.
 

@@ -1,0 +1,831 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Vector operations &#8212; Kalpa  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'vector_operations';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Raster operations" href="raster_operations.html" />
+    <link rel="prev" title="Creating Data for Geodata Engineering and Artificial Intelligence Modeling" href="creating_data_geod_engg_ai.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Kalpa  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">What can Kalpa Do?</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="what_can_kalpa_do.html">Kalpa capabilities</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Hands on!</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_folder.html">Setting up project folder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main_window.html">The Main Window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loading_and_visualising_data.html">Loading and visualising data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="grid_settings.html">Grid Settings and View Controls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creating_data_geod_engg_ai.html">Creating Data for Geodata Engineering and Artificial Intelligence Modeling</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Vector operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster_operations.html">Raster operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_kalpa_minex_plus.html">Advanced Geophysical and Image Processing Calculations in Kalpa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Analytics_plotter.html">Data Plotting and Analytics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Vyom_introduction.html">On Demand Satellite Data through Vyom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Geophysics_plugin.html">Geophysical Data Processing using Kalpa</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="tutorial1.html">Tutorial 1: Classifying Lithology Types in the Ladakh Region Using Kalpa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial2.html">Tutorial 2: Simple Mineral Prospectivity Maps with Kalpa</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="tutorial3.html">Tutorial 3: Mapping Deforestation in South Andaman Island Using Vyom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial4.html">Tutorial 4: Monitoring Crop Health in Wimmera, Victoria with Sentinel-2 and NDVI</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/vector_operations.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Vector operations</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-vector-layers">Merge Vector Layers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-overview">Function Overview</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-area-of-interest-aoi-using-bounding-box">Defining Area of Interest (AOI) using Bounding Box</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Function Overview</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-filtering">Vector Filtering</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Function Overview</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#single-column-based-filtering">Single-Column Based Filtering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-column-based-filtering">Multi-Column Based Filtering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-using-equality-conditions">Filtering Using Equality Conditions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#combining-conditions-with-or">Combining Conditions with OR</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-by-distance-geospatial-attributes">Filtering by Distance (Geospatial Attributes)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-rows-with-numerical-ranges">Filtering Rows with Numerical Ranges</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-rows-based-on-string-patterns">Filtering Rows Based on String Patterns</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-rows-with-missing-or-null-values">Filtering Rows with Missing or Null Values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-rows-based-on-multiple-conditions-advanced">Filtering Rows Based on Multiple Conditions (Advanced)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-rows-using-custom-functions">Filtering Rows Using Custom Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-geospatial-data-by-attribute-and-proximity">Filtering Geospatial Data by Attribute and Proximity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-using-logical-or-conditions">Filtering Using Logical OR Conditions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-by-area-or-length-attributes">Filtering by Area or Length Attributes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tips-for-writing-filtering-conditions">Tips for Writing Filtering Conditions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-calculator">Vector Calculator</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Function Overview</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-results">Using the Results</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices">Best Practices</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-to-raster-conversion-rasterization">Vector to Raster Conversion (Rasterization)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Function Overview</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="vector-operations">
+<h1>Vector operations<a class="headerlink" href="#vector-operations" title="Link to this heading">#</a></h1>
+<p>Vector operations in Kalpa allow users to perform various manipulations and analyses on vector data layers. These operations include merge vector layers, defining area of interest (AOI), vector filtering and calculator, and vector to raster conversion. This section provides an overview of the available vector operations and how to use them effectively.</p>
+<section id="merge-vector-layers">
+<h2>Merge Vector Layers<a class="headerlink" href="#merge-vector-layers" title="Link to this heading">#</a></h2>
+<p>The <strong>Merge Vector Layers</strong> operation enables users to combine multiple vector layers/shapefiles into a single GeoPackage file (.gpkg). This is particularly useful for combining different datasets created for Geodata Engineering using Kalpa.</p>
+<section id="function-overview">
+<h3>Function Overview<a class="headerlink" href="#function-overview" title="Link to this heading">#</a></h3>
+<ul>
+<li><p>Navigate to <strong>Tools &gt; Vector &gt; Merge Layers</strong> to open the merge layers window.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_2_14.png" />
+</div></blockquote>
+</li>
+<li><p>Select the vector layers you want to merge from the list of loaded layers.</p></li>
+<li><p>Choose the merge direction:</p>
+<ul>
+<li><p><strong>Column</strong>: Joins layers side by side, combining their features. Both layers/datasets should have the same number of rows for this operation.</p></li>
+<li><p><strong>Row</strong>: Stacks layers on top of each other based on a common attribute/feature.</p>
+<img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_2_15.png" />
+</li>
+</ul>
+</li>
+<li><p>Click <strong>Merge</strong> to execute the operation. The merged layer will be saved as a new GeoPackage file (.gpkg) and added to the Layer Panel.</p></li>
+</ul>
+</section>
+</section>
+<section id="defining-area-of-interest-aoi-using-bounding-box">
+<h2>Defining Area of Interest (AOI) using Bounding Box<a class="headerlink" href="#defining-area-of-interest-aoi-using-bounding-box" title="Link to this heading">#</a></h2>
+<p>The <strong>Bounding Box</strong> tool allows users to define a rectangular area of interest (AOI) based on the extent of an existing raster or vector layer or by manually specifying coordinates (X and Y Range). This AOI can then be used for various analyses and operations within Kalpa.</p>
+<section id="id1">
+<h3>Function Overview<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<ul>
+<li><p>Navigate to <strong>Tools &gt; Vector &gt; Bounding Box</strong> to open the bounding box window.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_1_10.png" />
+</div></blockquote>
+</li>
+<li><p>Select a layer or manually enter the X and Y coordinate ranges.</p></li>
+<li><p>Click <strong>Create Bounding Box</strong> to generate the AOI. The bounding box will be saved as a new vector layer in GeoPackage format (.gpkg) and added to the Layer Panel.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/vy_1_2.png" />
+<img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_1_11.png" />
+</div></blockquote>
+</li>
+</ul>
+</section>
+</section>
+<section id="vector-filtering">
+<h2>Vector Filtering<a class="headerlink" href="#vector-filtering" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">VectorFiltering</span></code> function allows you to filter a vector layer using custom conditions written in Python’s Pandas-style operations.</p>
+<section id="id2">
+<h3>Function Overview<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">VectorFiltering</span></code> function applies a condition to filter rows in a vector dataset and returns the filtered result.</p>
+<p><strong>Key Arguments:</strong></p>
+<ul>
+<li><p>selected vector layer.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">filter_condition</span></code>: A Python condition for filtering rows. The condition uses the format:</p>
+<p><code class="docutils literal notranslate"><span class="pre">row['column_name']</span> <span class="pre">&lt;condition&gt;</span> <span class="pre">value</span></code></p>
+<p>You can combine multiple conditions using logical operators like <code class="docutils literal notranslate"><span class="pre">and</span></code>, <code class="docutils literal notranslate"><span class="pre">or</span></code>, and <code class="docutils literal notranslate"><span class="pre">not</span></code>.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Filtdata_1.png" />
+<img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Filtdata_2.png" />
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="single-column-based-filtering">
+<h3>Single-Column Based Filtering<a class="headerlink" href="#single-column-based-filtering" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Scenario</strong>: Filter all rows where the <code class="docutils literal notranslate"><span class="pre">Population</span></code> column is greater than 1,000.</p></li>
+<li><p><strong>Condition String</strong>: <code class="docutils literal notranslate"><span class="pre">row['Population']</span> <span class="pre">&gt;</span> <span class="pre">1000</span></code></p></li>
+</ul>
+</section>
+<section id="multi-column-based-filtering">
+<h3>Multi-Column Based Filtering<a class="headerlink" href="#multi-column-based-filtering" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Scenario</strong>: Filter rows where the <code class="docutils literal notranslate"><span class="pre">Population</span></code> is greater than 1,000 and the <code class="docutils literal notranslate"><span class="pre">City</span></code> starts with the letter ‘C’.</p></li>
+<li><p><strong>Condition String</strong>: <code class="docutils literal notranslate"><span class="pre">row['Population']</span> <span class="pre">&gt;</span> <span class="pre">1000</span> <span class="pre">and</span> <span class="pre">row['City'].startswith('C')</span></code></p></li>
+</ul>
+</section>
+<section id="filtering-using-equality-conditions">
+<h3>Filtering Using Equality Conditions<a class="headerlink" href="#filtering-using-equality-conditions" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Scenario</strong>: Filter rows where the <code class="docutils literal notranslate"><span class="pre">City</span></code> column is equal to ‘B’.</p></li>
+<li><p><strong>Condition String</strong>: <code class="docutils literal notranslate"><span class="pre">row['City']</span> <span class="pre">==</span> <span class="pre">'B'</span></code></p></li>
+</ul>
+</section>
+<section id="combining-conditions-with-or">
+<h3>Combining Conditions with OR<a class="headerlink" href="#combining-conditions-with-or" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Scenario</strong>: Filter rows where the <code class="docutils literal notranslate"><span class="pre">Population</span></code> is less than 1,000 or the <code class="docutils literal notranslate"><span class="pre">City</span></code> starts with ‘A’.</p></li>
+<li><p><strong>Condition String</strong>: <code class="docutils literal notranslate"><span class="pre">row['Population']</span> <span class="pre">&lt;</span> <span class="pre">1000</span> <span class="pre">or</span> <span class="pre">row['City'].startswith('A')</span></code></p></li>
+</ul>
+</section>
+<section id="filtering-by-distance-geospatial-attributes">
+<h3>Filtering by Distance (Geospatial Attributes)<a class="headerlink" href="#filtering-by-distance-geospatial-attributes" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Scenario</strong>: Filter rows where the distance to a fault line is less than 5 km.</p></li>
+<li><p><strong>Condition String</strong>: <code class="docutils literal notranslate"><span class="pre">row['Fault_Dist']</span> <span class="pre">&lt;</span> <span class="pre">5</span></code></p></li>
+</ul>
+</section>
+<section id="filtering-rows-with-numerical-ranges">
+<h3>Filtering Rows with Numerical Ranges<a class="headerlink" href="#filtering-rows-with-numerical-ranges" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Scenario</strong>: Filter rows where <code class="docutils literal notranslate"><span class="pre">Population</span></code> is between 500 and 1,500.</p></li>
+<li><p><strong>Condition String</strong>: <code class="docutils literal notranslate"><span class="pre">500</span> <span class="pre">&lt;=</span> <span class="pre">row['Population']</span> <span class="pre">&lt;=</span> <span class="pre">1500</span></code></p></li>
+</ul>
+</section>
+<section id="filtering-rows-based-on-string-patterns">
+<h3>Filtering Rows Based on String Patterns<a class="headerlink" href="#filtering-rows-based-on-string-patterns" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Scenario</strong>: Filter rows where the <code class="docutils literal notranslate"><span class="pre">City</span></code> name contains the letter ‘a’ (case-insensitive).</p></li>
+<li><p><strong>Condition String</strong>: <code class="docutils literal notranslate"><span class="pre">row['City'].str.contains('a',</span> <span class="pre">case=False)</span></code></p></li>
+</ul>
+</section>
+<section id="filtering-rows-with-missing-or-null-values">
+<h3>Filtering Rows with Missing or Null Values<a class="headerlink" href="#filtering-rows-with-missing-or-null-values" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Scenario</strong>: Filter rows where the <code class="docutils literal notranslate"><span class="pre">geometry</span></code> column is <code class="docutils literal notranslate"><span class="pre">None</span></code> (missing).</p></li>
+<li><p><strong>Condition String</strong>: <code class="docutils literal notranslate"><span class="pre">row['geometry']</span> <span class="pre">is</span> <span class="pre">None</span></code></p></li>
+</ul>
+</section>
+<section id="filtering-rows-based-on-multiple-conditions-advanced">
+<h3>Filtering Rows Based on Multiple Conditions (Advanced)<a class="headerlink" href="#filtering-rows-based-on-multiple-conditions-advanced" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Scenario</strong>: Filter rows where <code class="docutils literal notranslate"><span class="pre">Population</span></code> is greater than 1,000, and the <code class="docutils literal notranslate"><span class="pre">City</span></code> does not start with ‘A’.</p></li>
+<li><p><strong>Condition String</strong>: <code class="docutils literal notranslate"><span class="pre">row['Population']</span> <span class="pre">&gt;</span> <span class="pre">1000</span> <span class="pre">and</span> <span class="pre">not</span> <span class="pre">row['City'].startswith('A')</span></code></p></li>
+</ul>
+</section>
+<section id="filtering-rows-using-custom-functions">
+<h3>Filtering Rows Using Custom Functions<a class="headerlink" href="#filtering-rows-using-custom-functions" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Scenario</strong>: Use a custom function to filter rows where the <code class="docutils literal notranslate"><span class="pre">City</span></code> name length is greater than 1 character.</p></li>
+<li><p><strong>Condition String</strong>: <code class="docutils literal notranslate"><span class="pre">len(row['City'])</span> <span class="pre">&gt;</span> <span class="pre">1</span></code></p></li>
+</ul>
+</section>
+<section id="filtering-geospatial-data-by-attribute-and-proximity">
+<h3>Filtering Geospatial Data by Attribute and Proximity<a class="headerlink" href="#filtering-geospatial-data-by-attribute-and-proximity" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Scenario</strong>: Filter rows where faults are older than 50 million years and within 10 km of the grid points.</p></li>
+<li><p><strong>Condition String</strong>: <code class="docutils literal notranslate"><span class="pre">row['Fault_Age']</span> <span class="pre">&gt;</span> <span class="pre">50</span> <span class="pre">and</span> <span class="pre">row['Fault_Dist']</span> <span class="pre">&lt;</span> <span class="pre">10</span></code></p></li>
+</ul>
+</section>
+<section id="filtering-using-logical-or-conditions">
+<h3>Filtering Using Logical OR Conditions<a class="headerlink" href="#filtering-using-logical-or-conditions" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Scenario</strong>: Filter rows where the <code class="docutils literal notranslate"><span class="pre">City</span></code> is either ‘A’ or ‘C’.</p></li>
+<li><p><strong>Condition String</strong>: <code class="docutils literal notranslate"><span class="pre">row['City']</span> <span class="pre">in</span> <span class="pre">['A',</span> <span class="pre">'C']</span></code></p></li>
+</ul>
+</section>
+<section id="filtering-by-area-or-length-attributes">
+<h3>Filtering by Area or Length Attributes<a class="headerlink" href="#filtering-by-area-or-length-attributes" title="Link to this heading">#</a></h3>
+<p>For vector datasets with polygons or lines, you can filter by geometric properties such as area or length.</p>
+<ul class="simple">
+<li><p><strong>Scenario</strong>: Filter polygons where the area is greater than 1,000 square meters.
+- <strong>Condition String</strong>: <code class="docutils literal notranslate"><span class="pre">row['geometry'].area</span> <span class="pre">&gt;</span> <span class="pre">1000</span></code></p></li>
+<li><p><strong>Scenario</strong>: Filter line features where the length is less than 500 meters.
+- <strong>Condition String</strong>: <code class="docutils literal notranslate"><span class="pre">row['geometry'].length</span> <span class="pre">&lt;</span> <span class="pre">500</span></code></p></li>
+</ul>
+</section>
+<section id="tips-for-writing-filtering-conditions">
+<h3>Tips for Writing Filtering Conditions<a class="headerlink" href="#tips-for-writing-filtering-conditions" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Use Logical Operators</strong>: Combine conditions with <code class="docutils literal notranslate"><span class="pre">and</span></code>, <code class="docutils literal notranslate"><span class="pre">or</span></code>, or <code class="docutils literal notranslate"><span class="pre">not</span></code> to create complex queries.</p></li>
+<li><p><strong>Check Data Types</strong>: Ensure your column data types match the condition. Numeric values should not be compared to strings.</p></li>
+<li><p><strong>Handle Missing Values</strong>: Use Pandas-style operations like <code class="docutils literal notranslate"><span class="pre">row['column'].notnull()</span></code> to filter out rows with missing data.</p></li>
+<li><p><strong>Validate Columns</strong>: Ensure the columns used in filtering exist in the dataset.</p></li>
+<li><p><strong>Optimize Conditions</strong>: Use simple, efficient conditions to avoid unnecessary computational overhead.</p></li>
+<li><p><strong>Test Conditions</strong>: Before applying complex filters, test them on a small subset of data to ensure correctness.</p></li>
+<li><p><strong>Export Results</strong>: Save filtered datasets for further analysis or visualization.</p></li>
+</ol>
+</section>
+</section>
+<section id="vector-calculator">
+<h2>Vector Calculator<a class="headerlink" href="#vector-calculator" title="Link to this heading">#</a></h2>
+<p>The <strong>Vector Calculator</strong> feature in <strong>Kalpa</strong> allows you to perform advanced calculations on the columns of a vector dataset (GeoDataFrame) and save the results as a new column. This is particularly useful for <strong>geospatial data engineering</strong>, <strong>statistical analysis</strong>, and <strong>feature generation</strong> for machine learning.</p>
+<p>Using the <strong>Vector Calculator</strong> operation, you can define <strong>custom operations</strong> to compute new columns based on existing data in a vector layer. This chapter guides you through the process of using the Vector Calculator, including <strong>practical examples</strong>.</p>
+<section id="id3">
+<h3>Function Overview<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<ul>
+<li><p>Navigate to <strong>Tools &gt; Vector &gt; Calculator</strong> to open the vector calculator window.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/vect_calc_1.png" />
+</div></blockquote>
+</li>
+<li><p>Select the vector layer on which you want to perform calculations.</p></li>
+<li><p><strong>Define the New Column Name</strong>: Choose a <strong>descriptive name</strong> for the column that will store the calculated values.</p></li>
+<li><p><strong>Write the Operation Code</strong>: Use <strong>Python expressions</strong> to define the calculation. Examples:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">row['column1']</span> <span class="pre">+</span> <span class="pre">row['column2']</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">row['column1']</span> <span class="pre">*</span> <span class="pre">1.5</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">len(row['city_name'])</span></code></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Click <strong>Apply</strong> to execute the operation. The new column will be added to the vector layer.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/vect_calc_2.png" />
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h3>
+<p>1. <strong>Basic Arithmetic Operation</strong>
+Add two columns <code class="docutils literal notranslate"><span class="pre">col1</span></code> and <code class="docutils literal notranslate"><span class="pre">col2</span></code> to create a new column <code class="docutils literal notranslate"><span class="pre">sum_col</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sum_col</span>
+<span class="n">row</span><span class="p">[</span><span class="s1">&#39;col1&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;col2&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>2. <strong>Scaling a Column</strong>
+Multiply a column value by a constant factor:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scaled_value</span>
+<span class="n">row</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mf">1.5</span>
+</pre></div>
+</div>
+<p>3. <strong>String Length Calculation</strong>
+Create a column representing the length of strings in <code class="docutils literal notranslate"><span class="pre">city_name</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">city_name_length</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;city_name&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>4. <strong>Conditional Calculation</strong>
+Create a binary column <code class="docutils literal notranslate"><span class="pre">high_population</span></code> based on a threshold:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">high_population</span>
+<span class="mi">1</span> <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1000</span> <span class="k">else</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>5. <strong>Combining String Values</strong>
+Merge <code class="docutils literal notranslate"><span class="pre">city</span></code> and <code class="docutils literal notranslate"><span class="pre">state</span></code> into a single <code class="docutils literal notranslate"><span class="pre">Location</span></code> column:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Location</span>
+<span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;city&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p>6. <strong>Calculating Distance to a Reference Point</strong>
+Calculate the distance of each geometry to a reference point:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">distance_to_point</span>
+<span class="n">row</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">distance</span><span class="p">(</span><span class="n">reference_point</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>7. <strong>Geometric Area Calculation</strong>
+Compute the area of each geometry (for polygons):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">area</span>
+<span class="n">row</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">area</span>
+</pre></div>
+</div>
+<p>8. <strong>Custom Transformations</strong>
+Apply a logarithmic transformation to a numeric column:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">log_value</span>
+<span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+<section id="using-the-results">
+<h3>Using the Results<a class="headerlink" href="#using-the-results" title="Link to this heading">#</a></h3>
+<p>Once calculations are completed, you can:</p>
+<ul class="simple">
+<li><p><strong>Visualize</strong> the new column directly in <strong>Kalpa’s</strong> interface.</p></li>
+<li><p>Use the updated vector layer for further <strong>geospatial or statistical analysis</strong>.</p></li>
+<li><p><strong>Export</strong> the enriched dataset as a <strong>GeoPackage (.gpkg)</strong> file or other supported formats using Kalpa’s export options.</p></li>
+</ul>
+</section>
+<section id="best-practices">
+<h3>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Column Names</strong>
+Use <strong>clear and descriptive names</strong> for new columns to keep the dataset understandable.</p></li>
+<li><p><strong>Error Handling</strong>
+Check your Python expressions for <strong>syntax errors</strong> or <strong>invalid column references</strong> before applying them.</p></li>
+<li><p><strong>Performance</strong>
+Avoid overly complex computations on large datasets to maintain <strong>good performance</strong>.</p></li>
+<li><p><strong>Documentation</strong>
+Keep a record of all applied transformations for <strong>reproducibility</strong> and future reference.</p></li>
+</ol>
+</section>
+</section>
+<section id="vector-to-raster-conversion-rasterization">
+<h2>Vector to Raster Conversion (Rasterization)<a class="headerlink" href="#vector-to-raster-conversion-rasterization" title="Link to this heading">#</a></h2>
+<p>The <strong>Rasterize</strong> operation allows users to convert vector data (points, lines, polygons) into raster format. This process is essential for various geospatial analyses and visualizations that require raster data.</p>
+<section id="id4">
+<h3>Function Overview<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<ul>
+<li><p>Navigate to <strong>Tools &gt; Vector &gt; Rasterize</strong>.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/rasterize_1.png" />
+</div></blockquote>
+</li>
+<li><p>Select the vector layer to be rasterized.</p></li>
+<li><p>Choose the attribute/column from the vector layer.</p></li>
+<li><p>Select the statistical operation. Following operations are supported:</p>
+<ul class="simple">
+<li><p><strong>Mean</strong>: Average value of all vector features within each raster cell.</p></li>
+<li><p><strong>Median</strong>: Median value of vector features within each raster cell.</p></li>
+<li><p><strong>Count</strong>: Number of vector features that fall within each raster cell.</p></li>
+<li><p><strong>Standard Deviation (std)</strong>: Standard deviation of vector feature values within each raster cell.</p></li>
+<li><p><strong>Sum</strong>: Total sum of vector feature values within each raster cell.</p></li>
+<li><p><strong>Min</strong>: Minimum value among vector features within each raster cell.</p></li>
+<li><p><strong>Max</strong>: Maximum value among vector features within each raster cell.</p></li>
+</ul>
+</li>
+<li><p>Define the latitude and longitude extent for the output raster (if required, otherwise leave it to default to use the vector layer extent).</p></li>
+<li><p>Define the output raster resolution (in degrees).</p></li>
+<li><p>Clip Range: Restrict the minimum and maximum values of the output raster for the selected vector attribute. (You can also edit these once the output raster will be added to the Layer Panel).</p></li>
+<li><p>Define the compression level (e.g., 1,2,3…,9). (Default: 4).</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/rasterize_2.png" />
+</div></blockquote>
+</li>
+<li><p>Click <strong>Rasterize</strong> to execute the operation. The resulting raster layer will be added to the Layer Panel.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/rasterize_3.png" />
+</div></blockquote>
+</li>
+</ul>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="creating_data_geod_engg_ai.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Creating Data for Geodata Engineering and Artificial Intelligence Modeling</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="raster_operations.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Raster operations</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-vector-layers">Merge Vector Layers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-overview">Function Overview</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-area-of-interest-aoi-using-bounding-box">Defining Area of Interest (AOI) using Bounding Box</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Function Overview</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-filtering">Vector Filtering</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Function Overview</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#single-column-based-filtering">Single-Column Based Filtering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-column-based-filtering">Multi-Column Based Filtering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-using-equality-conditions">Filtering Using Equality Conditions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#combining-conditions-with-or">Combining Conditions with OR</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-by-distance-geospatial-attributes">Filtering by Distance (Geospatial Attributes)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-rows-with-numerical-ranges">Filtering Rows with Numerical Ranges</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-rows-based-on-string-patterns">Filtering Rows Based on String Patterns</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-rows-with-missing-or-null-values">Filtering Rows with Missing or Null Values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-rows-based-on-multiple-conditions-advanced">Filtering Rows Based on Multiple Conditions (Advanced)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-rows-using-custom-functions">Filtering Rows Using Custom Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-geospatial-data-by-attribute-and-proximity">Filtering Geospatial Data by Attribute and Proximity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-using-logical-or-conditions">Filtering Using Logical OR Conditions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-by-area-or-length-attributes">Filtering by Area or Length Attributes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tips-for-writing-filtering-conditions">Tips for Writing Filtering Conditions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-calculator">Vector Calculator</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Function Overview</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-results">Using the Results</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices">Best Practices</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-to-raster-conversion-rasterization">Vector to Raster Conversion (Rasterization)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Function Overview</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Kalpa
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Kalpa.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

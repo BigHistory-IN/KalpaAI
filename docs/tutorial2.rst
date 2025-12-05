@@ -1,5 +1,14 @@
 Tutorial 2: Simple Mineral Prospectivity Maps with Kalpa
 ========================================================
+Tutorial by
+
+**Utpal Singh¹**, **Satyam Pratap Singh¹**, **Sourabh Motiani²** 
+
+¹ School of Geosciences, University of Sydney
+
+² Department of Earth Sciences, Indian Institute of Technology Roorkee
+
+------------------------------------------------
 
 In this tutorial, we will use **Kalpa** to build a **mineral prospectivity map**.  
 The process utilizes three types of datasets:  
@@ -49,7 +58,7 @@ Satellite Data
 
 **LANDSAT8 Bands:**
 
-- Multispectral bands (3 to 8) as NetCDF files
+- Multispectral bands (1 to 9) as NetCDF files
 
 **SRTM Elevation Data:**
 
@@ -70,12 +79,11 @@ Workflow
 Step 1: Loading Data and Visualization
 --------------------------------------
 
-1. Start Kalpa and choose Cartesian coordinates as the working coordinate system.
-2. Create a new folder named ``MineralProspectivity`` to save the dataset, figures, etc.
+- Start Kalpa and create a new folder named ``MineralProspectivity`` to save the dataset, figures, etc.
 
 **Import Vector Data:**
 
-- Navigate to: ``File -> Import -> Vector``  
+- Navigate to **File > Import > Vector Data**.  
 - Load the following files:
   
   - ``ShapeFiles/Fault_Tectonic.shp``
@@ -87,13 +95,13 @@ Step 1: Loading Data and Visualization
 - Adjust colormap, feature width, and range as needed.
 
 
-    .. image:: /_static/images/tut2_01.png
-        :alt: Welcome Window
+    .. image:: /_static/images/Tut_2_1.png
+        :alt: Please refresh the page or check your internet connection.
         :align: center
 
 **Import Raster Data:**
 
-- Navigate to: ``File -> Import -> Raster``  
+- Navigate to **File > Import > Raster Data**.  
 - Load the following files:
 
   - ``GeophysicalProcessed/Raster/BOUGUER_AN_Kriging.nc``
@@ -103,256 +111,263 @@ Step 1: Loading Data and Visualization
   - ``GeophysicalProcessed/Raster/UC_Gravity/*``
   - ``GeophysicalProcessed/Raster/UC_Magnetic/*``
   - ``SatelliteData/SRTM/SRTM_Raj_India.nc``
-  - ``SatelliteData/LANDSAT/Band_3_LANDSAT.nc`` to ``Band_8_LANDSAT.nc``
+  - ``SatelliteData/LANDSAT/Band_1_LANDSAT.nc`` to ``Band_9_LANDSAT.nc``
 
 
-    .. image:: /_static/images/tut2_02.png
-        :alt: Welcome Window
+    .. image:: /_static/images/Tut_2_2.png
+        :alt: Please refresh the page or check your internet connection.
         :align: center
 
 
 
 Step 2: Feature Generation
---------------------------
+---------------------------
 
 1. **Generate Positive Labels from Known Deposits:**
 
-   - Go to: ``Plugins -> MPM -> Feature Generation``
-   - AOI/ROI: ``Deposits``
-   - Select all layers *except* Tectonic Framework and Deposits
+   - Navigate to **Tools → Data Sampling**.
+   - AOI (Area of Interest): **Deposit**.
+   - Select all layers **except** Tectonic Framework and Deposit.
+
+   **Layer Configuration:**
+
+   - Select the columns to be sampled for vectors having multiple columns:
+   
+     • Fault_Tectonic
+     • Fold_Tectonic
+     • Lineament_Tectonic
+
+   - For rasters, select **Band Value** in case of multiple bands.
+    
+   - Sampling method: **Random** with default seed points as number of deposits are less than default value in this case.
+
+
+    .. image:: /_static/images/Tut_2_3.png
+        :alt: Please refresh the page or check your internet connection.
+        :align: center
+
+
+   - Click **Create** → Save as: ``Positive_samples.gpkg``.
+
+
+    .. image:: /_static/images/Tut_2_4.png
+        :alt: Please refresh the page or check your internet connection.
+        :align: center
+
+   .. image:: /_static/images/Tut_2_5.png
+        :alt: Please refresh the page or check your internet connection.
+        :align: center
+
+
+
+2. **Create Bounding Box:**
+   
+   - Navigate to **Tools → Vector → Bounding Box**.
+
+   - Select layer: ``BOUGUER_AN_Kriging``
+
+    .. image:: /_static/images/Tut_2_6.png
+        :alt: Please refresh the page or check your internet connection.
+        :align: center
+
+
+   - Click **Create** → Save as: ``bounding_box.gpkg``.
+
+    .. image:: /_static/images/Tut_2_7.png
+        :alt: Please refresh the page or check your internet connection.
+        :align: center
+
+
+
+3. **Generate Unlabelled Features:**
+
+   - AOI: **bounding_box**.
+   - Select all layers *except* Tectonic Framework, Deposit, bounding_box, Positive_samples.
+   - Method: **Random**, 3000 seed points.
 
    **Layer Config:**
 
-   - **Euclidean Distance** for vectors:
-     - Fault_Tectonic
-     - Fold_Tectonic
-     - Lineament_Tectonic
+   - Select the columns to be sampled for vectors having multiple columns:
 
-   - **Band Value** for rasters:
-     - BOUGUER_AN_Kriging.nc
-     - MAGNETIC_A_Kriging.nc
-     - Grad_Gravity/*
-     - Grad_Magnetic/*
-     - UC_Gravity/*
-     - UC_Magnetic/*
+     • Fault_Tectonic
+     • Fold_Tectonic
+     • Lineament_Tectonic
 
-   - Sampling method: ``regular`` with 100 seed points
-
-
-    .. image:: /_static/images/tut2_03.png
-        :alt: Welcome Window
+    .. image:: /_static/images/Tut_2_8.png
+        :alt: Please refresh the page or check your internet connection.
         :align: center
 
+    .. image:: /_static/images/Tut_2_9.png
+        :alt: Please refresh the page or check your internet connection.
+        :align: center
+   
+   - Click **Create**.
 
-    .. image:: /_static/images/tut2_04.png
-        :alt: Welcome Window
+    .. image:: /_static/images/Tut_2_10.png
+        :alt: Please refresh the page or check your internet connection.
         :align: center
 
+   - Save as: ``Unlabelled_samples.gpkg``
 
-
-   - Click **Generate** → Save as: ``deposit_sampled.gpkg``
-
-
-    .. image:: /_static/images/tut2_05.png
-        :alt: Welcome Window
+    .. image:: /_static/images/Tut_2_11.png
+        :alt: Please refresh the page or check your internet connection.
         :align: center
 
 
 
-2. **Generate Label Column:**
+4. **Generate Label Column:**
 
-   - Go to: ``Tools -> Vector Calculator``
-   - Layer: ``deposit_sampled``
-   - Condition: ``== 1``
-   - New column: ``Label``
-       .. image:: /_static/images/tut2_05.png
-        :alt: Welcome Window
-        :align: center
-   - Click **Apply** → Save as: ``deposit_positive_label.gpkg``
+   - Navigate to **Tools → Vector → Calculator**.
+   - Layer: **Positive_samples**.
+   - Condition: **'1'** for positive samples.
+   - Column name: **Label**.
+   - Click **Apply**.
 
-
-    .. image:: /_static/images/tut2_07.png
-        :alt: Welcome Window
+    .. image:: /_static/images/Tut_2_12.png
+        :alt: Please refresh the page or check your internet connection.
         :align: center
 
+   - Save as: ``Positive_Label_calculated.gpkg``
 
+   - Repeat the same steps for **Unlabelled_samples** with condition **'0'**.
+   - Save as: ``Negative_Label_calculated.gpkg``
 
-3. **Create Bounding Box:**
-
-   - From ``Create Bounding Box``, choose layer: ``BOUGUER_AN_Kriging``
-
-    .. image:: /_static/images/tut2_08.png
-        :alt: Welcome Window
-        :align: center
-
-
-   - Click **Create** → Save as: ``bounding_box.gpkg``
-
-    .. image:: /_static/images/tut2_09.png
-        :alt: Welcome Window
+    .. image:: /_static/images/Tut_2_13.png
+        :alt: Please refresh the page or check your internet connection.
         :align: center
 
 
 
-4. **Generate Unlabelled (Random) Features:**
+5. **Merge Positive and Unlabelled Datasets:**
 
-   - AOI: ``bounding_box``
-   - Method: ``Random``, 1000 seed points
+   - Navigate to **Tools → Vector → Merge Layers**.
 
-   **Layer Config:**
-
-   - **Euclidean Distance** for:
-     - Fault_Tectonic
-     - Fold_Tectonic
-     - Lineament_Tectonic
-
-   - **Band Value** for:
-     - BOUGUER_AN_Kriging.nc
-     - MAGNETIC_A_Kriging.nc
-     - Grad_Gravity/*
-     - Grad_Magnetic/*
-     - UC_Gravity/*
-     - UC_Magnetic/*
-
-    .. image:: /_static/images/tut2_10.png
-        :alt: Welcome Window
-        :align: center
-    .. image:: /_static/images/tut2_11.png
-        :alt: Welcome Window
-        :align: center
-    .. image:: /_static/images/tut2_12.png
-        :alt: Welcome Window
-        :align: center
-
-   - Click **Generate** → Save as: ``randomly_sampled.gpkg``
-
-    .. image:: /_static/images/tut2_13.png
-        :alt: Welcome Window
-        :align: center
-This workflow now generates randomly sampled data which in this workflow, the width is set to 1 for visualisation and positive samples as thicker dots with width 3
-
-    .. image:: /_static/images/tut2_14.png
-        :alt: Welcome Window
-        :align: center
-
-5. **Label Random Features as 0:**
-
-   - Go to: ``Vector Calculator``
-   - Layer: ``randomly_sampled``
-   - Condition: ``== 0``
-   - Column name: ``Label``
-   - Save as: ``deposits_unlabelled.gpkg``
-
-    .. image:: /_static/images/tut2_15.png
-        :alt: Welcome Window
-        :align: center
-
-6. **Merge Positive and Unlabelled Datasets:**
-
-   - Remove ``deposit_sampled`` and ``randomly_sampled`` layers (optional)
-   - Go to: ``Merge Layers``
-      .. image:: /_static/images/tut2_16.png
-         :alt: Welcome Window
+      .. image:: /_static/images/Tut_2_14.png
+         :alt: Please refresh the page or check your internet connection.
          :align: center
 
-   - Merge: ``deposits_positive_label`` + ``deposits_unlabelled``
-   - Save as: ``training_data.gpkg``
-   - Visualization tip: Set positive samples (label = 1) with width 3, others with width 1
+   - Layers: **Positive_Label_calculated.gpkg** and **Negative_Label_calculated.gpkg**.
+   - Merge direction: **Row** Wise.
+   - Click **Merge**.
 
-Now you can see that the positive (1) are in green color and unlabelled in brown. You may edit this in cmap
+      .. image:: /_static/images/Tut_2_15.png
+         :alt: Please refresh the page or check your internet connection.
+         :align: center
 
-    .. image:: /_static/images/tut2_17.png
-        :alt: Welcome Window
-        :align: center
+   - Save as: ``Training_Dataset.gpkg``
+
+      .. image:: /_static/images/Tut_2_16.png
+         :alt: Please refresh the page or check your internet connection.
+         :align: center
+
 
 
 Step 3: Create PU Bagging Model
--------------------------------
+--------------------------------
 
-1. Go to: ``Plugins -> MPM -> Models -> PU Bagging -> Create New Model``
+1. Navigate to **Models → Supervised → PU Bagging**.
 
-      .. image:: /_static/images/tut2_18.png
-         :alt: Welcome Window
-         :align: center
-
-2. Training data: ``training_data.gpkg``
-      .. image:: /_static/images/tut2_19.png
-         :alt: Welcome Window
-         :align: center
-3. (Optional) Generate correlation report to examine feature correlation
-      .. image:: /_static/images/tut2_20.png
-         :alt: Welcome Window
+      .. image:: /_static/images/Tut_2_17.png
+         :alt: Please refresh the page or check your internet connection.
          :align: center
 
-   Click close
-4. Target feature: ``Label``
-5. Select all other features as training features (except ``Label``)
-      .. image:: /_static/images/tut2_21.png
-         :alt: Welcome Window
+2. Select **Create New Model**.
+
+3. Training data: ``Training_Dataset.gpkg``.
+
+4. (Optional) Generate correlation report to examine feature correlation.
+
+5. Target feature: **Label**.
+
+6. Select all other features as training features (except **Label**).
+
+7. Tune other hyperparameters as needed.
+
+8. Enable: **scaled probabilities**.
+
+9. Click **Start Training**.
+
+      .. image:: /_static/images/Tut_2_18.png
+         :alt: Please refresh the page or check your internet connection.
          :align: center
-      .. image:: /_static/images/tut2_22.png
-         :alt: Welcome Window
+
+8. Save model as: ``PU_Model``
+
+      .. image:: /_static/images/Tut_2_19.png
+         :alt: Please refresh the page or check your internet connection.
          :align: center
-6. Enable: ``scaled probabilities``
-7. Click **Start Training**
-8. Save model as: ``PU Model``
-      .. image:: /_static/images/tut2_23.png
-         :alt: Welcome Window
-         :align: center
-9. Go to: ``Plugins -> MPM -> Feature Generation -> Bounding Box``
-      .. image:: /_static/images/tut2_24.png
-         :alt: Welcome Window
-         :align: center
-      .. image:: /_static/images/tut2_25.png
-         :alt: Welcome Window
-         :align: center
-10. Select all layers *except*:
+         
+
+Step 4: Prediction and Visualization
+------------------------------------
+
+1. **Extracting Regular Grid for Prediction:**
+
+   - Navigate to **Tools → Data Sampling**.
+   - AOI: **bounding_box**.
+   - Select all layers *except*:
     
     - Tectonic Framework  
     - Deposit  
-    - deposits_positive_label  
+    - Positive_samples  
+    - Unlabelled_samples  
     - bounding_box  
-    - deposits_unlabelled  
-    - training_data
+    - Training_Dataset
+    - Positive_Label_calculated
+    - Negative_Label_calculated
 
-      .. image:: /_static/images/tut2_26.png
-         :alt: Welcome Window
+   - Sampling method: **Regular**.
+   - Set resolution to: **0.05 degrees**. This may be of your choice.
+
+      .. image:: /_static/images/Tut_2_20.png
+         :alt: Please refresh the page or check your internet connection.
          :align: center
 
-11. Repeat selection of **Band Value** for rasters and **Euclidean Distance** for vectors
-12. Set resolution to: ``0.005 degrees``. This may be of your choice
-13. Click **Generate** → Save as: ``predicted_dataset.gpkg``. This may take a while depending on resolution and hardware specs.
-      .. image:: /_static/images/tut2_27.png
-         :alt: Welcome Window
+   - Click **Create**. Save as: ``Testing_Dataset.gpkg``.
+
+      .. image:: /_static/images/Tut_2_21.png
+         :alt: Please refresh the page or check your internet connection.
          :align: center
 
-      .. image:: /_static/images/tut2_28.png
-         :alt: Welcome Window
+2. **Prediction using Trained Model:**
+
+   - Navigate to **Models → Supervised → PU Bagging**.
+
+      .. image:: /_static/images/Tut_2_22.png
+         :alt: Please refresh the page or check your internet connection.
          :align: center
+
+   - Select **Existing Model**.
+   - Select **PU_Model**.
+
+      .. image:: /_static/images/Tut_2_23.png
+         :alt: Please refresh the page or check your internet connection.
+         :align: center
+
+
+   - Choose: ``Testing_Dataset.gpkg`` as Data for Prediction.
       
-14. Go to: ``Plugins -> MPM -> Models -> PU Bagging -> Existing Model``
-15. Choose: ``predicted_dataset.gpkg`` as prediction input
-      .. image:: /_static/images/tut2_29.png
-         :alt: Welcome Window
-         :align: center
-16. Click **Predict**
-
-** You now have your PU Bagging prediction.**
-      .. image:: /_static/images/tut2_30.png
-         :alt: Welcome Window
+      .. image:: /_static/images/Tut_2_24.png
+         :alt: Please refresh the page or check your internet connection.
          :align: center
 
-Final Step: Select a colormap of your choice for visualizing predictions.
+   - Click **Predict**
 
-      .. image:: /_static/images/tut2_30.png
-         :alt: Welcome Window
+   - **You now have your PU Bagging prediction.**
+      
+      .. image:: /_static/images/Tut_2_25.png
+         :alt: Please refresh the page or check your internet connection.
          :align: center
 
-      .. image:: /_static/images/tut2_31.png
-         :alt: Welcome Window
+      .. image:: /_static/images/Tut_2_26.png
+         :alt: Please refresh the page or check your internet connection.
          :align: center
 
-      .. image:: /_static/images/tut2_32.png
-         :alt: Welcome Window
+3. **Visualizing Prospectivity Map:**
+
+   - Adjust colormap of your choice for better visualization and overlay the deposits layer to see how well the model has performed.
+
+      .. image:: /_static/images/Tut_2_27.png
+         :alt: Please refresh the page or check your internet connection.
          :align: center
 

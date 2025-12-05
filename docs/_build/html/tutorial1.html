@@ -1,0 +1,662 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Tutorial 1: Classifying Lithology Types in the Ladakh Region Using Kalpa &#8212; Kalpa  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorial1';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tutorial 2: Simple Mineral Prospectivity Maps with Kalpa" href="tutorial2.html" />
+    <link rel="prev" title="Geophysical Data Processing using Kalpa" href="Geophysics_plugin.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Kalpa  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">What can Kalpa Do?</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="what_can_kalpa_do.html">Kalpa capabilities</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Hands on!</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_folder.html">Setting up project folder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main_window.html">The Main Window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loading_and_visualising_data.html">Loading and visualising data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="grid_settings.html">Grid Settings and View Controls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creating_data_geod_engg_ai.html">Creating Data for Geodata Engineering and Artificial Intelligence Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vector_operations.html">Vector operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster_operations.html">Raster operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_kalpa_minex_plus.html">Advanced Geophysical and Image Processing Calculations in Kalpa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Analytics_plotter.html">Data Plotting and Analytics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Vyom_introduction.html">On Demand Satellite Data through Vyom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Geophysics_plugin.html">Geophysical Data Processing using Kalpa</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Tutorial 1: Classifying Lithology Types in the Ladakh Region Using Kalpa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial2.html">Tutorial 2: Simple Mineral Prospectivity Maps with Kalpa</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="tutorial3.html">Tutorial 3: Mapping Deforestation in South Andaman Island Using Vyom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial4.html">Tutorial 4: Monitoring Crop Health in Wimmera, Victoria with Sentinel-2 and NDVI</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/tutorial1.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Tutorial 1: Classifying Lithology Types in the Ladakh Region Using Kalpa</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-overview">Dataset Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow">Workflow</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-load-raster-files">Step 1: Load Raster Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-load-and-merge-label-files">Step 2: Load and Merge Label Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-sample-training-data">Step 3: Sample Training Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-build-a-random-forest-classifier">Step 4: Build a Random Forest Classifier</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-random-forest">What is Random Forest?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#key-parameters">Key Parameters:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training-the-model">Training the Model:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-predict-lithology-for-the-entire-region">Step 5: Predict Lithology for the Entire Region</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-1-prepare-the-prediction-dataset">Step 5.1: Prepare the Prediction Dataset</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-2-perform-prediction">Step 5.2: Perform Prediction</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="tutorial-1-classifying-lithology-types-in-the-ladakh-region-using-kalpa">
+<h1>Tutorial 1: Classifying Lithology Types in the Ladakh Region Using Kalpa<a class="headerlink" href="#tutorial-1-classifying-lithology-types-in-the-ladakh-region-using-kalpa" title="Link to this heading">#</a></h1>
+<p>Tutorial by</p>
+<p><strong>Utpal Singh¹</strong>, <strong>Satyam Pratap Singh¹</strong> , <strong>Sudipta Sarkar²</strong></p>
+<p>¹ School of Geosciences, University of Sydney</p>
+<p>² Department of Earth and Climate Sciences, Indian Institute of Science Education and Research Pune</p>
+<hr class="docutils" />
+<p>This tutorial demonstrates how to <strong>classify lithology types</strong> in the <strong>Ladakh region</strong> using <strong>Kalpa</strong>.
+We will employ a <strong>supervised machine learning</strong> method, <strong>Random Forest</strong>, to train a model using <strong>satellite data</strong> and known lithology types.
+Once trained, this model will be used to <strong>predict lithology across the entire region</strong>.</p>
+<section id="dataset-overview">
+<h2>Dataset Overview<a class="headerlink" href="#dataset-overview" title="Link to this heading">#</a></h2>
+<p>For this classification task, we use:</p>
+<ul class="simple">
+<li><p><strong>LANDSAT8 Bands</strong>: Multispectral bands (1 to 8) as NetCDF files.</p></li>
+<li><p><strong>SRTM Elevation Data</strong>: Elevation values from the Shuttle Radar Topography Mission (SRTM).</p></li>
+</ul>
+<p><strong>Accessing the Dataset</strong>
+The tutorial dataset is available <em>[provide link here]</em>.</p>
+</section>
+<section id="workflow">
+<h2>Workflow<a class="headerlink" href="#workflow" title="Link to this heading">#</a></h2>
+<section id="step-1-load-raster-files">
+<h3>Step 1: Load Raster Files<a class="headerlink" href="#step-1-load-raster-files" title="Link to this heading">#</a></h3>
+<p>Start by loading the required raster datasets:</p>
+<ul>
+<li><p>All <strong>LANDSAT8 bands</strong> (Band 1 to Band 8).</p></li>
+<li><p><strong>SRTM Elevation</strong> data.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_1_1.png" />
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="step-2-load-and-merge-label-files">
+<h3>Step 2: Load and Merge Label Files<a class="headerlink" href="#step-2-load-and-merge-label-files" title="Link to this heading">#</a></h3>
+<p>Next, load the shapefiles containing <strong>known lithology types</strong>.
+These shapefiles represent <strong>17 lithology classes</strong>, stored in the <strong>CLASS_NAME</strong> column:</p>
+<ul>
+<li><p>Alluvium</p></li>
+<li><p>Chert Jasper Metasediments</p></li>
+<li><p>Dunite</p></li>
+<li><p>Fluvial Channel</p></li>
+<li><p>Gabbro</p></li>
+<li><p>Ice</p></li>
+<li><p>Indus Formation</p></li>
+<li><p>Kargil Formation</p></li>
+<li><p>Ladakh Plutonic Complex</p></li>
+<li><p>Lake</p></li>
+<li><p>Lian</p></li>
+<li><p>Pyroxenite</p></li>
+<li><p>Serpentinized Peridotite</p></li>
+<li><p>Tso Morari Complex</p></li>
+<li><p>Volcanics</p></li>
+<li><p>Water</p></li>
+<li><p>Zildat Ophiolite Melange</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_1_2.png" />
+</div></blockquote>
+</li>
+</ul>
+<p><strong>Merge</strong> these shapefiles into a single <strong>GeoPackage file</strong> named <strong>All_Classes.gpkg</strong> using the <strong>“Merge Vector”</strong> functionality in Kalpa.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_1_3.png" />
+<img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_1_4.png" />
+</div></blockquote>
+<p>These datasets are written in Row format, for a different dataset written columnwise, use column.</p>
+<p>After merging the data you may remove the individual layers classes since all are merged in all_classes.gpkg.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_1_5.png" />
+</div></blockquote>
+</section>
+<section id="step-3-sample-training-data">
+<h3>Step 3: Sample Training Data<a class="headerlink" href="#step-3-sample-training-data" title="Link to this heading">#</a></h3>
+<p>Randomly <strong>sample the raster data</strong> (LANDSAT8 bands, SRTM Elevation) and <strong>lithology classes</strong> (CLASS_NAME) to create a <strong>training dataset</strong>:</p>
+<ol class="arabic">
+<li><p>Navigate to <strong>Tools → Data Sampling</strong>.</p></li>
+<li><p>Select <strong>100,000 data points</strong>.</p></li>
+<li><p>Save the resulting file as <strong>training_dataset.gpkg</strong>.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_1_6.png" />
+</div></blockquote>
+</li>
+</ol>
+<p>Hit create, this may take few time depending on system specifications. Save the dataset as training_dataset.gpkg.</p>
+</section>
+<section id="step-4-build-a-random-forest-classifier">
+<h3>Step 4: Build a Random Forest Classifier<a class="headerlink" href="#step-4-build-a-random-forest-classifier" title="Link to this heading">#</a></h3>
+<section id="what-is-random-forest">
+<h4>What is Random Forest?<a class="headerlink" href="#what-is-random-forest" title="Link to this heading">#</a></h4>
+<p><strong>Random Forest</strong> is an <strong>ensemble learning method</strong> that constructs <strong>multiple decision trees</strong> during training and outputs the <strong>mode of the classes</strong> for classification tasks.
+It is <strong>robust</strong>, handles <strong>high-dimensional data</strong> well, and is <strong>resistant to overfitting</strong>.</p>
+</section>
+<section id="key-parameters">
+<h4>Key Parameters:<a class="headerlink" href="#key-parameters" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>n_estimators</strong>: Number of trees in the forest (e.g., 100).</p></li>
+<li><p><strong>criterion</strong>: Function to measure split quality (e.g., <cite>“gini”</cite> for Gini impurity).</p></li>
+<li><p><strong>max_depth</strong>: Maximum depth of a tree (<cite>None</cite> allows full growth).</p></li>
+<li><p><strong>min_samples_split</strong>: Minimum samples required to split a node.</p></li>
+<li><p><strong>min_samples_leaf</strong>: Minimum samples required at a leaf node.</p></li>
+<li><p><strong>max_features</strong>: Number of features to consider for the best split (e.g., <cite>“sqrt”</cite>).</p></li>
+<li><p><strong>bootstrap</strong>: Whether bootstrap samples are used to build trees (True/False).</p></li>
+</ul>
+</section>
+<section id="training-the-model">
+<h4>Training the Model:<a class="headerlink" href="#training-the-model" title="Link to this heading">#</a></h4>
+<ol class="arabic">
+<li><p>Navigate to <strong>Models → Supervised → Random Forest Classifier → Create New Model</strong>.</p></li>
+<li><p>Load <strong>training_dataset.gpkg</strong>.</p></li>
+<li><p>Set the <strong>training features</strong> (Band1 to Band8, SRTM Elevation).</p></li>
+<li><p>Set the <strong>target feature</strong> (CLASS_NAME).</p></li>
+<li><p>Configure the <strong>Random Forest parameters</strong> as needed.</p></li>
+<li><p><strong>Train the model</strong> and <strong>save it</strong> for future use.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_1_7.png" />
+</div></blockquote>
+</li>
+</ol>
+<p>Hit <strong>start training</strong> after chosing your parameters. For simplicity in this tutorial we are proceeding with default values.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_1_8.png" />
+</div></blockquote>
+<p>After training, save model as RF_model. This will create a folder named RF Classifier Models in the project directory.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_1_9.png" />
+</div></blockquote>
+</section>
+</section>
+<section id="step-5-predict-lithology-for-the-entire-region">
+<h3>Step 5: Predict Lithology for the Entire Region<a class="headerlink" href="#step-5-predict-lithology-for-the-entire-region" title="Link to this heading">#</a></h3>
+<section id="step-5-1-prepare-the-prediction-dataset">
+<h4>Step 5.1: Prepare the Prediction Dataset<a class="headerlink" href="#step-5-1-prepare-the-prediction-dataset" title="Link to this heading">#</a></h4>
+<ol class="arabic">
+<li><p>Define the <strong>area of interest/region of interest</strong> using a <strong>bounding box</strong> or a <strong>shapefile</strong>.  For this tutorial, we are training for the entire region, so we make the shapefile/ROI for the entire region.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_1_10.png" />
+</div></blockquote>
+</li>
+</ol>
+<p>You may chose any of the bands to extract the region in this tutorial, since they all represent the same region.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_1_11.png" />
+</div></blockquote>
+<p>Click <strong>create</strong> after chosing the band and save as bounding_box.gpkg.</p>
+<ol class="arabic" start="2">
+<li><p><strong>Sample raster data</strong> at <strong>regular grid intervals</strong>. Exclude picking any classes since it will be predicted later using ML models. Select AOI as bounding_box which was produced earlier. Define resolution you want in degrees, not in m or km. For eg. 0.05 degree is approx 0.001km or 10m</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_1_12.png" />
+</div></blockquote>
+</li>
+</ol>
+<p>Hit <strong>create</strong>. This will take a few moment, and save the sampled dataset as predition_dataset.gpkg.</p>
+<ol class="arabic simple" start="3">
+<li><p>Save the sampled dataset as <strong>prediction_dataset.gpkg</strong>.</p></li>
+</ol>
+</section>
+<section id="step-5-2-perform-prediction">
+<h4>Step 5.2: Perform Prediction<a class="headerlink" href="#step-5-2-perform-prediction" title="Link to this heading">#</a></h4>
+<ol class="arabic">
+<li><p>Navigate to <strong>Models → Supervised → Random Forest Classifier → Existing Model</strong>.</p></li>
+<li><p><strong>Load</strong> the trained model.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_1_13.png" />
+</div></blockquote>
+</li>
+<li><p>Select <strong>prediction_dataset.gpkg</strong> for prediction.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_1_14.png" />
+</div></blockquote>
+</li>
+</ol>
+<p>Click <strong>Predict</strong> and save as predicted_dataset.gpkg.</p>
+<ol class="arabic simple" start="4">
+<li><p><strong>Save</strong> and <strong>visualize</strong> the <strong>predicted lithology layer</strong>.</p></li>
+</ol>
+<p>Navigate to Predicted_CLASS_NAME from the predicted_dataset layer.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_1_15.png" />
+</div></blockquote>
+<p>Enjoy!!!</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_1_16.png" />
+</div></blockquote>
+</section>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Geophysics_plugin.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Geophysical Data Processing using Kalpa</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="tutorial2.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Tutorial 2: Simple Mineral Prospectivity Maps with Kalpa</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-overview">Dataset Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow">Workflow</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-load-raster-files">Step 1: Load Raster Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-load-and-merge-label-files">Step 2: Load and Merge Label Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-sample-training-data">Step 3: Sample Training Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-build-a-random-forest-classifier">Step 4: Build a Random Forest Classifier</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-random-forest">What is Random Forest?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#key-parameters">Key Parameters:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training-the-model">Training the Model:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-predict-lithology-for-the-entire-region">Step 5: Predict Lithology for the Entire Region</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-1-prepare-the-prediction-dataset">Step 5.1: Prepare the Prediction Dataset</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-2-perform-prediction">Step 5.2: Perform Prediction</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Kalpa
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Kalpa.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,669 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Getting started with Kalpa &#8212; Kalpa  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Summary" href="summary.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="#">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Kalpa  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">What can Kalpa Do?</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="what_can_kalpa_do.html">Kalpa capabilities</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Hands on!</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_folder.html">Setting up project folder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main_window.html">The Main Window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loading_and_visualising_data.html">Loading and Visualizing data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="grid_settings.html">Grid Settings and View Controls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creating_data_geod_engg_ai.html">Creating Data for Geodata Engineering and Artificial Intelligence Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vector_operations.html">Vector operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster_operations.html">Raster operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_kalpa_minex_plus.html">Advanced Geophysical and Image Processing Calculations in Kalpa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Analytics_plotter.html">Data Plotting and Analytics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Vyom_introduction.html">On Demand Satellite Data through Vyom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Geophysics_plugin.html">Geophysical Data Processing using Kalpa</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="tutorial1.html">Tutorial 1: Classifying Lithology Types in the Ladakh Region Using Kalpa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial2.html">Tutorial 2: Simple Mineral Prospectivity Maps with Kalpa</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="tutorial3.html">Tutorial 3: Mapping Deforestation in South Andaman Island Using Vyom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial4.html">Tutorial 4: Monitoring Crop Health in Wimmera, Victoria with Sentinel-2 and NDVI</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/index.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Getting started with Kalpa</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-can-kalpa-do">What can Kalpa Do?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on">Hands on!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-apply-machine-learning-in-kalpa">How to apply machine learning in Kalpa?</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="getting-started-with-kalpa">
+<h1>Getting started with Kalpa<a class="headerlink" href="#getting-started-with-kalpa" title="Link to this heading">#</a></h1>
+<p>Welcome to Kalpa, a versatile software suite for geospatial data visualization, processing, and machine learning. This guide will walk you through the initial setup and introduce you to the main features of the interface.</p>
+<section id="what-can-kalpa-do">
+<h2>What can Kalpa Do?<a class="headerlink" href="#what-can-kalpa-do" title="Link to this heading">#</a></h2>
+<div class="toctree-wrapper compound">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">What can Kalpa Do?</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="what_can_kalpa_do.html">Kalpa capabilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="what_can_kalpa_do.html#key-advantage">Key Advantage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="what_can_kalpa_do.html#project-management">Project Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="what_can_kalpa_do.html#data-visualisation">Data Visualisation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="what_can_kalpa_do.html#raster-data-visualisation">Raster Data Visualisation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="what_can_kalpa_do.html#vector-data-visualization">Vector Data Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="what_can_kalpa_do.html#customization-options">Customization Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="what_can_kalpa_do.html#data-processing">Data Processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="what_can_kalpa_do.html#machine-learning">Machine Learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="what_can_kalpa_do.html#utilities">Utilities</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="hands-on">
+<h2>Hands on!<a class="headerlink" href="#hands-on" title="Link to this heading">#</a></h2>
+<div class="toctree-wrapper compound">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Hands on!</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="install.html#download-kalpa">Download Kalpa</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="install.html#macos-installation-instructions">MacOS Installation Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#windows-installation-instructions">Windows Installation Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#starting-window">Starting Window</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="project_folder.html">Setting up project folder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main_window.html">The Main Window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loading_and_visualising_data.html">Loading and Visualizing data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="loading_and_visualising_data.html#types-of-geospatial-data">Types of Geospatial Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loading_and_visualising_data.html#raster-data">1. Raster Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loading_and_visualising_data.html#vector-data">2. Vector Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loading_and_visualising_data.html#loading-and-configuring-raster-data">Loading and Configuring Raster Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loading_and_visualising_data.html#loading-raster-data">Loading Raster Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loading_and_visualising_data.html#managing-layers">Managing Layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loading_and_visualising_data.html#customizing-layer-properties">Customizing Layer Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loading_and_visualising_data.html#loading-and-configuring-vector-data">Loading and Configuring Vector Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loading_and_visualising_data.html#loading-vector-data">Loading Vector Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loading_and_visualising_data.html#id1">Managing Layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loading_and_visualising_data.html#id2">Customizing Layer Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loading_and_visualising_data.html#future-features">Future Features</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="grid_settings.html">Grid Settings and View Controls</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="grid_settings.html#id1">Grid Settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="grid_settings.html#default-behaviour">Default Behaviour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grid_settings.html#customizing-the-grid">Customizing the Grid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grid_settings.html#adjustable-parameters">Adjustable Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grid_settings.html#toggling-the-grid">Toggling the Grid</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="grid_settings.html#controlling-the-view">Controlling the View</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="grid_settings.html#zooming">Zooming</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grid_settings.html#rotating">Rotating</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grid_settings.html#repositioning">Repositioning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grid_settings.html#resetting-the-view">Resetting the View</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="grid_settings.html#saving-figures">Saving Figures</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="grid_settings.html#supported-formats">Supported Formats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grid_settings.html#saving-procedure">Saving Procedure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="creating_data_geod_engg_ai.html">Creating Data for Geodata Engineering and Artificial Intelligence Modeling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="creating_data_geod_engg_ai.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_data_geod_engg_ai.html#grid-types-for-data-sampling">Grid Types for Data Sampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_data_geod_engg_ai.html#step-by-step-guide-sampling-data">Step-by-Step Guide: Sampling Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_data_geod_engg_ai.html#tips-for-effective-data-sampling">Tips for Effective Data Sampling</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="vector_operations.html">Vector operations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="vector_operations.html#merge-vector-layers">Merge Vector Layers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="vector_operations.html#function-overview">Function Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="vector_operations.html#defining-area-of-interest-aoi-using-bounding-box">Defining Area of Interest (AOI) using Bounding Box</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="vector_operations.html#id1">Function Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="vector_operations.html#vector-filtering">Vector Filtering</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="vector_operations.html#id2">Function Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vector_operations.html#single-column-based-filtering">Single-Column Based Filtering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vector_operations.html#multi-column-based-filtering">Multi-Column Based Filtering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vector_operations.html#filtering-using-equality-conditions">Filtering Using Equality Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vector_operations.html#combining-conditions-with-or">Combining Conditions with OR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vector_operations.html#filtering-by-distance-geospatial-attributes">Filtering by Distance (Geospatial Attributes)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vector_operations.html#filtering-rows-with-numerical-ranges">Filtering Rows with Numerical Ranges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vector_operations.html#filtering-rows-based-on-string-patterns">Filtering Rows Based on String Patterns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vector_operations.html#filtering-rows-with-missing-or-null-values">Filtering Rows with Missing or Null Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vector_operations.html#filtering-rows-based-on-multiple-conditions-advanced">Filtering Rows Based on Multiple Conditions (Advanced)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vector_operations.html#filtering-rows-using-custom-functions">Filtering Rows Using Custom Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vector_operations.html#filtering-geospatial-data-by-attribute-and-proximity">Filtering Geospatial Data by Attribute and Proximity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vector_operations.html#filtering-using-logical-or-conditions">Filtering Using Logical OR Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vector_operations.html#filtering-by-area-or-length-attributes">Filtering by Area or Length Attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vector_operations.html#tips-for-writing-filtering-conditions">Tips for Writing Filtering Conditions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="vector_operations.html#vector-calculator">Vector Calculator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="vector_operations.html#id3">Function Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vector_operations.html#examples">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vector_operations.html#using-the-results">Using the Results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vector_operations.html#best-practices">Best Practices</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="vector_operations.html#vector-to-raster-conversion-rasterization">Vector to Raster Conversion (Rasterization)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="vector_operations.html#id4">Function Overview</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="raster_operations.html">Raster operations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="raster_operations.html#resampling-raster-data">Resampling Raster Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="raster_operations.html#function-overview">Function Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="raster_operations.html#raster-to-vector-conversion-vectorization">Raster to Vector Conversion (Vectorization)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="raster_operations.html#id1">Function Overview</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_kalpa_minex_plus.html">Advanced Geophysical and Image Processing Calculations in Kalpa</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="advanced_kalpa_minex_plus.html#advanced-calculation-examples">Advanced Calculation Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced_kalpa_minex_plus.html#tips-for-writing-complex-equations">Tips for Writing Complex Equations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Analytics_plotter.html">Data Plotting and Analytics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Analytics_plotter.html#function-overview">Function Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Analytics_plotter.html#customizations">Customizations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Vyom_introduction.html">On Demand Satellite Data through Vyom</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Vyom_introduction.html#downloading-and-visualizing-satellite-data-with-vyom">Downloading and Visualizing Satellite Data with Vyom</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Vyom_introduction.html#calculate-satellite-indices-with-vyom">Calculate Satellite Indices with Vyom</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Vyom_introduction.html#available-indices">Available Indices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Geophysics_plugin.html">Geophysical Data Processing using Kalpa</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Geophysics_plugin.html#kriging-interpolation">Kriging Interpolation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Geophysics_plugin.html#function-overview">Function Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Geophysics_plugin.html#equivalent-sources">Equivalent Sources</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Geophysics_plugin.html#id1">Function Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Geophysics_plugin.html#geophysical-filtering-operations">Geophysical Filtering operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Geophysics_plugin.html#id2">Function Overview</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="how-to-apply-machine-learning-in-kalpa">
+<h2>How to apply machine learning in Kalpa?<a class="headerlink" href="#how-to-apply-machine-learning-in-kalpa" title="Link to this heading">#</a></h2>
+<div class="toctree-wrapper compound">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorial1.html">Tutorial 1: Classifying Lithology Types in the Ladakh Region Using Kalpa</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial1.html#dataset-overview">Dataset Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial1.html#workflow">Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial1.html#step-1-load-raster-files">Step 1: Load Raster Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial1.html#step-2-load-and-merge-label-files">Step 2: Load and Merge Label Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial1.html#step-3-sample-training-data">Step 3: Sample Training Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial1.html#step-4-build-a-random-forest-classifier">Step 4: Build a Random Forest Classifier</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tutorial1.html#what-is-random-forest">What is Random Forest?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorial1.html#key-parameters">Key Parameters:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorial1.html#training-the-model">Training the Model:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial1.html#step-5-predict-lithology-for-the-entire-region">Step 5: Predict Lithology for the Entire Region</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tutorial1.html#step-5-1-prepare-the-prediction-dataset">Step 5.1: Prepare the Prediction Dataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tutorial1.html#step-5-2-perform-prediction">Step 5.2: Perform Prediction</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial2.html">Tutorial 2: Simple Mineral Prospectivity Maps with Kalpa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial2.html#dataset-overview">Dataset Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial2.html#geophysical-data">Geophysical Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial2.html#geological-data">Geological Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial2.html#satellite-data">Satellite Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial2.html#workflow">Workflow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial2.html#step-1-loading-data-and-visualization">Step 1: Loading Data and Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial2.html#step-2-feature-generation">Step 2: Feature Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial2.html#step-3-create-pu-bagging-model">Step 3: Create PU Bagging Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial2.html#step-4-prediction-and-visualization">Step 4: Prediction and Visualization</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial3.html">Tutorial 3: Mapping Deforestation in South Andaman Island Using Vyom</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial3.html#workflow">Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial3.html#step-1-create-a-bounding-box">Step 1: Create a Bounding Box</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial3.html#step-2-download-satellite-data-and-calculate-ndvi-using-vyom">Step 2: Download Satellite Data and Calculate NDVI Using Vyom</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial3.html#step-3-change-detection">Step 3: Change Detection</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial4.html">Tutorial 4: Monitoring Crop Health in Wimmera, Victoria with Sentinel-2 and NDVI</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial4.html#dataset-overview">Dataset Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial4.html#workflow">Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial4.html#step-1-create-a-bounding-box">Step 1: Create a Bounding Box</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial4.html#step-2-download-satellite-data-using-vyom">Step 2: Download Satellite Data Using Vyom</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial4.html#step-3-calculate-ndvi">Step 3: Calculate NDVI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial4.html#step-4-visualize-ndvi-results">Step 4: Visualize NDVI Results</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="right-next"
+       href="summary.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Summary</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-can-kalpa-do">What can Kalpa Do?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on">Hands on!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-apply-machine-learning-in-kalpa">How to apply machine learning in Kalpa?</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Kalpa
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Kalpa.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

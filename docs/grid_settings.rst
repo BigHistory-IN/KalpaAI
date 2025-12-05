@@ -6,8 +6,8 @@ Grid Settings and View Controls
 
 Kalpa includes robust grid settings and visualization controls to enhance data exploration and presentation.
 
-    .. image:: /_static/images/grid_settings_and_view_controls_1.png
-        :alt: Welcome Window
+    .. image:: /_static/images/Grid_settings_1.png
+        :alt: Please refresh the page or check your internet connection.
         :align: center
 
 Grid Settings
@@ -24,11 +24,11 @@ Customizing the Grid
 ~~~~~~~~~~~~~~~~~~~~
 To modify grid settings:
 
-1. Open the **Layer Window**.
+1. Open the **Layer Panel**.
 2. Click the **colored rectangle** next to the "Grid" Layer to access grid properties.
 
-    .. image:: /_static/images/grid_settings_and_view_controls_2.png
-        :alt: Welcome Window
+    .. image:: /_static/images/Grid_settings_2.png
+        :alt: Please refresh the page or check your internet connection.
         :align: center
 
 Adjustable Parameters
@@ -42,7 +42,7 @@ You can configure the following:
 
 Toggling the Grid
 ~~~~~~~~~~~~~~~~~
-- To hide the grid, click the **eye icon** next to the "Grid" Layer in the Layer Window.
+- To hide the grid, click the **eye icon** next to the "Grid" Layer in the Layer Panel.
 
 Controlling the View
 --------------------

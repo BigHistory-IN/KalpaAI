@@ -33,45 +33,46 @@ Raster Data Visualisation
 Vector Data Visualization
 -----------------------------
 
-**Supported Formats:** Load and visualize vector data in shapefile and GPKG formats, including points, lines, and polygons.
+    **Supported Formats:** Load and visualize vector data in shapefile and GPKG formats, including points, lines, and polygons.
 
-**Applications:** Geological maps, geochemical data, structural data, lithological maps, and more.
+    **Applications:** Geological maps, geochemical data, structural data, lithological maps, and more.
 
 Customization Options
 -----------------------
 
-**Raster Layers:**
+    **Raster Layers:**
+    
+    - Adjust color maps using over 50 scientific colormaps for enhanced data interpretation.
 
-Adjust color maps using over 50 scientific colormaps for enhanced data interpretation.
+    **Vector Layers:**
+    
+    - Visualize specific vector data columns with custom settings for size, width, opacity, fill, and color.
+    - Apply scalar data visualization using scientific colormaps.
 
-**Vector Layers:**
-
-Visualize specific vector data columns with custom settings for size, width, opacity, fill, and color.
-
-Apply scalar data visualization using scientific colormaps.
-
-**Grid Settings:**
-
-Add latitude and longitude grids with customizable size, width, opacity, and color to create publication-ready visuals.
+    **Grid Settings:**
+    
+    - Add latitude and longitude grids with customizable size, width, opacity, and color to create publication-ready visuals.
 
 Data Processing
 -----------------
 
-*Data Sampling*
+Data Sampling
+~~~~~~~~~~~~~~
 
 Extract raster and vector data within a specified area of interest, shapefile, or bounding region to create machine-trainable datasets for geospatial machine learning, geostatistics, and modeling.
 
-Generate grids for sampling:
+**Generate grids for sampling:**
 
     - **Random Grid:** Define a specified number of points.
     - **Regular Grid:** Set a specific resolution.
 
-Perform operations:
+**Perform operations:**
 
     - Sample raster data onto grids.
     - Sample specific vector data columns and calculate distances to nearby vector features.
 
-*GIS-Style Vector Processing*
+GIS-Style Vector Processing
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     - **Merge Layers:** Combine multiple vector layers row-wise or column-wise.
     - **Bounding Box Creation:** Generate bounding box layers from raster or vector data for sampling.
@@ -93,8 +94,9 @@ Machine Learning
 **Supported Models:**
 
     - Random Forest Regressor and Classifier.
-    - Positive Labeled Enabled Bagging (PU-enabled RF).
-    - K-means Clustering and DBSCAN.
+    - Support Vector Machine (SVM) Regressor and Classifier.
+    - Positive and Unlabeled Bagging (PU Bagging).
+    - K-means Clustering, Principal Component Analysis (PCA), and DBSCAN.
     - More models coming soon.
 
 **Applications:**
@@ -121,8 +123,8 @@ Machine Learning
 Utilities
 --------------
 
-    Resource Monitoring: Display current RAM utilization.
+    - **Resource Monitoring:** Display current RAM utilization.
 
-    Coordinate Tracking: View precise coordinates of the cursor.
+    - **Coordinate Tracking:** View precise coordinates of the cursor.
 
 Kalpa is not just a tool; it is your gateway to unlocking the full potential of geospatial data. Whether you are an ArcGIS or QGIS user or exploring geospatial data for the first time, Kalpa equips you with the features and flexibility to achieve your goals effortlessly.

@@ -16,7 +16,7 @@ Steps:
 3. You will receive an email with a download link for the installer.
 
    .. image:: /_static/images/download_kalpa.png
-      :alt: Download Kalpa
+      :alt: Please refresh the page or check your internet connection.
       :align: center
 
 Kalpa is available for **Windows**, **macOS**, and **Linux**.
@@ -33,7 +33,7 @@ MacOS Installation Instructions
 3. **Launch**: Open Kalpa from Launchpad. Upon successful loading, the starting window of Kalpa will appear.
     
     .. image:: /_static/images/mac_installation.png
-        :alt: MacOS Installation
+        :alt: Please refresh the page or check your internet connection.
         :align: center
 
     .. note::
@@ -62,7 +62,7 @@ Windows Installation Instructions
      `https://kalpa.bighistory.in/explore-kalpa <https://kalpa.bighistory.in/explore-kalpa>`_
 
    .. image:: /_static/images/windows_installation_2.png
-      :alt: Windows License Activation
+      :alt: Please refresh the page or check your internet connection.
       :align: center
 
    The license file will be saved in your system’s **Downloads** folder, typically named as `username_license.license`.
@@ -73,7 +73,7 @@ Windows Installation Instructions
    Once the license is validated, Kalpa is ready to use.
 
    .. image:: /_static/images/windows_installation_1.png
-      :alt: Windows Installation Wizard
+      :alt: Please refresh the page or check your internet connection.
       :align: center
 
   
@@ -81,8 +81,8 @@ Windows Installation Instructions
 Starting Window
 ----------------
 
-When you launch Kalpa, you’ll be greeted by the Starting Window, which prompts you to Select Projection. 
-    .. image:: /_static/images/welcome_window.png
-        :alt: Welcome Window
+When you launch Kalpa, you’ll be greeted by the Starting Window, which prompts you to Select Project Folder. 
+    .. image:: /_static/images/Starting_window.png
+        :alt: Please refresh the page or check your internet connection.
         :align: center
 

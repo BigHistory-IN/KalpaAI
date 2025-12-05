@@ -27,9 +27,12 @@ Hands on!
    loading_and_visualising_data
    grid_settings
    creating_data_geod_engg_ai
-   filtering_data
-   vector_calculator
+   vector_operations
+   raster_operations
    advanced_kalpa_minex_plus
+   Analytics_plotter
+   Vyom_introduction
+   Geophysics_plugin
 
 How to apply machine learning in Kalpa?
 ---------------------------------------
@@ -42,5 +45,4 @@ How to apply machine learning in Kalpa?
    tutorial2
    tutorial3
    tutorial4
-   tutorial5
-   tutorial6
+  

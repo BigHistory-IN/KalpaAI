@@ -1,9 +1,10 @@
 The Main Window
 ===============
 
-Once you’ve set up the projection and project folder, you’ll enter the Main Window, the central workspace in Kalpa.
+**Once you’ve set up the project folder, you’ll enter the Main Window, the central workspace in Kalpa.**
+
     .. image:: /_static/images/main_window.png
-        :alt: Welcome Window
+        :alt: Please refresh the page or check your internet connection.
         :align: center
 
 Here’s a quick overview of its components:
@@ -18,19 +19,25 @@ Here’s a quick overview of its components:
 
     The menu bar provides access to various options, such as loading data, processing tools, and applying workflows.
 
-3. Axes Tool
+3. Layer Panel
+
+    This panel lists all loaded layers, including raster data, vector data, grids, and other elements.
+
+    You can manage layer visibility, access layer properties, and organize layers here.
+
+4. Axes Tool
 
     This interactive tool shows the current orientation of the camera and allows you to adjust it directly.
 
-4. Tool Bar
+5. Tool Bar
 
     Quickly change the camera's position along different axes using the toolbar.
 
-5. Coordinates Display
+6. Coordinates Display
 
     Displays the current coordinates of the mouse pointer in the active projection. Visualise legend layer legends.
 
-6. RAM Utilization Panel
+7. RAM Utilization Panel
 
     Provides a live view of the total, system, and application RAM usage, helping you monitor resource consumption.
 

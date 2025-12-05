@@ -46,21 +46,30 @@ Step-by-Step Guide: Sampling Data
 ---------------------------------
 
 1. **Accessing the Sampling Tool**
-   - Navigate to **Data Processing > Data Sampling** to open the data sampling interface.
+   - Navigate to **Tools > Data Sampling** to open the data sampling interface.
+
+      .. image:: /_static/images/sampling_1.png
+            :alt: Please refresh the page or check your internet connection.
+            :align: center
+
+      .. image:: /_static/images/sampling_2.png
+            :alt: Please refresh the page or check your internet connection.
+            :align: center
 
 2. **Defining the Area of Interest (AOI)**
    - You must specify the region where the data will be sampled. You can define the AOI in two ways:
      - **Bounding Box**:
        - Use the **Bounding Box Utility** to create a rectangular AOI based on an existing raster or vector layer.
-       - Go to **Vector > Bounding Box**, select the layer, and save the bounding box layer.
+       - Go to **Tools > Vector > Bounding Box**, select the layer, and save the bounding box layer.
      - **Vector File**:
        - Use a vector file with complex polygon or multipolygon geometries, or point geometries, as the AOI.
 
 3. **Selecting Data Layers**
-   - **Raster Layers**:
-     - Select one or more loaded raster layers to sample values at grid points.
-   - **Vector Layers**:
-     - Choose vector layers, and a dropdown with checkboxes will appear. You can select specific columns (attributes) from the vector data for sampling.
+   - Choose the raster and vector layers from which you want to sample data:
+     - **Raster Layers**:
+       - Select one or more loaded raster layers to sample values at grid points.
+     - **Vector Layers**:
+       - Choose vector layers, and a dropdown with checkboxes will appear. You can select specific columns (attributes) from the vector data for sampling.
 
 4. **Choosing a Gridding Method**
    - Select one of the two available gridding methods:
@@ -68,12 +77,18 @@ Step-by-Step Guide: Sampling Data
      - **Regular Grid**: Set the resolution of the grid.
 
 5. **Creating the Grid and Sampling Data**
-   1. Click **Create** to generate the grid and begin sampling data.
-   2. Wait for the process to complete. A progress bar or notification will indicate the status.
+   - Click **Create** to generate the grid and begin sampling data. Wait for the process to complete. A progress bar or notification will indicate the status.
+
+    .. image:: /_static/images/Tut_1_12.png
+        :alt: Please refresh the page or check your internet connection.
+        :align: center
+
+    .. image:: /_static/images/Tut_2_3.png
+        :alt: Please refresh the page or check your internet connection.
+        :align: center
 
 6. **Saving the Sampled Data**
-   - After the sampling process finishes, a saving window will appear. You can specify the file name and save the output as a vector file (``.gpkg``).
-   - This vector file will be added as a new layer in the **Layer Window**.
+   - After the sampling process finishes, a saving window will appear. You can specify the file name and save the output as a vector file (``.gpkg``). This vector file will be added as a new layer in the **Layer Panel**.
 
 Tips for Effective Data Sampling
 --------------------------------

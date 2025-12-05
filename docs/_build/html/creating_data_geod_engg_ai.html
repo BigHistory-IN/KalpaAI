@@ -1,0 +1,561 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Creating Data for Geodata Engineering and Artificial Intelligence Modeling &#8212; Kalpa  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'creating_data_geod_engg_ai';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Vector operations" href="vector_operations.html" />
+    <link rel="prev" title="Grid Settings and View Controls" href="grid_settings.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Kalpa  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">What can Kalpa Do?</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="what_can_kalpa_do.html">Kalpa capabilities</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Hands on!</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_folder.html">Setting up project folder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main_window.html">The Main Window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loading_and_visualising_data.html">Loading and visualising data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="grid_settings.html">Grid Settings and View Controls</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Creating Data for Geodata Engineering and Artificial Intelligence Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vector_operations.html">Vector operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster_operations.html">Raster operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_kalpa_minex_plus.html">Advanced Geophysical and Image Processing Calculations in Kalpa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Analytics_plotter.html">Data Plotting and Analytics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Vyom_introduction.html">On Demand Satellite Data through Vyom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Geophysics_plugin.html">Geophysical Data Processing using Kalpa</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="tutorial1.html">Tutorial 1: Classifying Lithology Types in the Ladakh Region Using Kalpa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial2.html">Tutorial 2: Simple Mineral Prospectivity Maps with Kalpa</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="tutorial3.html">Tutorial 3: Mapping Deforestation in South Andaman Island Using Vyom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial4.html">Tutorial 4: Monitoring Crop Health in Wimmera, Victoria with Sentinel-2 and NDVI</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/creating_data_geod_engg_ai.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Creating Data for Geodata Engineering and Artificial Intelligence Modeling</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-types-for-data-sampling">Grid Types for Data Sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-guide-sampling-data">Step-by-Step Guide: Sampling Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tips-for-effective-data-sampling">Tips for Effective Data Sampling</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="creating-data-for-geodata-engineering-and-artificial-intelligence-modeling">
+<span id="creating-data-geodata-eng-ai"></span><h1>Creating Data for Geodata Engineering and Artificial Intelligence Modeling<a class="headerlink" href="#creating-data-for-geodata-engineering-and-artificial-intelligence-modeling" title="Link to this heading">#</a></h1>
+<p>Kalpa makes it easy to prepare datasets for geodata engineering, geostatistics, and machine learning applications. By extracting information from loaded raster and vector layers, you can create structured, machine-trainable datasets tailored to your specific modeling needs. This chapter outlines how to filter, process, and extract data seamlessly.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>When you load multiple layers of raster and vector data, Kalpa allows you to extract their attributes for further analysis. This process involves creating a grid over a defined area of interest (AOI) and sampling raster values or vector attributes into a new dataset. The sampled data is saved as a vector file (<code class="docutils literal notranslate"><span class="pre">.gpkg</span></code>) and includes:</p>
+<ul class="simple">
+<li><p><strong>Raster Values</strong>: Directly sampled at grid points.</p></li>
+<li><p><strong>Vector Attributes</strong>: Selected columns from vector data and their distances to grid points.</p></li>
+</ul>
+<p>For example, if you select a vector column named <code class="docutils literal notranslate"><span class="pre">Fault_Age</span></code>, the new layer will contain:</p>
+<ul class="simple">
+<li><p>A column named <code class="docutils literal notranslate"><span class="pre">Fault_Age</span></code>, which stores the sampled attribute value.</p></li>
+<li><p>A column named <code class="docutils literal notranslate"><span class="pre">Fault_Age_dist</span></code>, which stores the distance from the grid point to the nearest vector geometry.</p></li>
+</ul>
+</section>
+<section id="grid-types-for-data-sampling">
+<h2>Grid Types for Data Sampling<a class="headerlink" href="#grid-types-for-data-sampling" title="Link to this heading">#</a></h2>
+<p>Kalpa supports two primary gridding approaches to structure the sampling process:</p>
+<ol class="arabic">
+<li><p><strong>Random Grid</strong>
+- <strong>Description</strong>: Randomly distributes points across the AOI.
+- <strong>Applications</strong>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Suitable for creating unbiased training datasets for machine learning models.</p></li>
+<li><p>Reduces spatial autocorrelation in training data, improving generalization.</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p><strong>Benefits</strong>:
+- Provides diverse sampling across the area.
+- Reduces overrepresentation of specific regions or patterns.</p></li>
+</ul>
+</li>
+<li><p><strong>Regular Grid</strong>
+- <strong>Description</strong>: Creates a grid with uniform spacing based on a specified resolution.
+- <strong>Applications</strong>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Ideal for geodata engineering tasks, such as image processing or geophysical filtering (e.g., upward and downward continuation).</p></li>
+<li><p>Useful for spatial modeling and interpolation.</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p><strong>Benefits</strong>:
+- Ensures consistent coverage across the AOI.
+- Facilitates compatibility with raster-based algorithms.</p></li>
+</ul>
+</li>
+</ol>
+<p>For regular grids, the X and Y resolutions are identical, ensuring a uniform grid layout.</p>
+</section>
+<section id="step-by-step-guide-sampling-data">
+<h2>Step-by-Step Guide: Sampling Data<a class="headerlink" href="#step-by-step-guide-sampling-data" title="Link to this heading">#</a></h2>
+<ol class="arabic">
+<li><p><strong>Accessing the Sampling Tool</strong>
+- Navigate to <strong>Tools &gt; Data Sampling</strong> to open the data sampling interface.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/sampling_1.png" />
+<img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/sampling_2.png" />
+</div></blockquote>
+</li>
+<li><p><strong>Defining the Area of Interest (AOI)</strong>
+- You must specify the region where the data will be sampled. You can define the AOI in two ways:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Bounding Box</strong>:
+- Use the <strong>Bounding Box Utility</strong> to create a rectangular AOI based on an existing raster or vector layer.
+- Go to <strong>Tools &gt; Vector &gt; Bounding Box</strong>, select the layer, and save the bounding box layer.</p></li>
+<li><p><strong>Vector File</strong>:
+- Use a vector file with complex polygon or multipolygon geometries, or point geometries, as the AOI.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>Selecting Data Layers</strong>
+- Choose the raster and vector layers from which you want to sample data:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Raster Layers</strong>:
+- Select one or more loaded raster layers to sample values at grid points.</p></li>
+<li><p><strong>Vector Layers</strong>:
+- Choose vector layers, and a dropdown with checkboxes will appear. You can select specific columns (attributes) from the vector data for sampling.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>Choosing a Gridding Method</strong>
+- Select one of the two available gridding methods:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Random Grid</strong>: Specify the number of points to generate.</p></li>
+<li><p><strong>Regular Grid</strong>: Set the resolution of the grid.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>Creating the Grid and Sampling Data</strong>
+- Click <strong>Create</strong> to generate the grid and begin sampling data. Wait for the process to complete. A progress bar or notification will indicate the status.</p>
+<blockquote>
+<div><img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_1_12.png" />
+<img alt="Please refresh the page or check your internet connection." class="align-center" src="_images/Tut_2_3.png" />
+</div></blockquote>
+</li>
+<li><p><strong>Saving the Sampled Data</strong>
+- After the sampling process finishes, a saving window will appear. You can specify the file name and save the output as a vector file (<code class="docutils literal notranslate"><span class="pre">.gpkg</span></code>). This vector file will be added as a new layer in the <strong>Layer Panel</strong>.</p></li>
+</ol>
+</section>
+<section id="tips-for-effective-data-sampling">
+<h2>Tips for Effective Data Sampling<a class="headerlink" href="#tips-for-effective-data-sampling" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>For large datasets, consider using an AOI that reduces the sampling region to save computational resources and time.</p></li>
+<li><p>When working with machine learning models, using a <strong>Random Grid</strong> can help reduce sampling bias and improve model performance.</p></li>
+<li><p>For spatially dense geodata engineering tasks, use a <strong>Regular Grid</strong> with a resolution that matches the scale of your analysis.</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="grid_settings.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Grid Settings and View Controls</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="vector_operations.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Vector operations</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-types-for-data-sampling">Grid Types for Data Sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-guide-sampling-data">Step-by-Step Guide: Sampling Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tips-for-effective-data-sampling">Tips for Effective Data Sampling</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Kalpa
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Kalpa.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
